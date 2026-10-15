@@ -1,0 +1,48 @@
+button.sale-tag{border:0;font-family:inherit;font-weight:700;line-height:1.4;vertical-align:middle;cursor:pointer}
+button.sale-tag:hover{color:#d83950;background:#ffe8ec}
+button.sale-tag:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+.sale-dialog{width:min(652px,calc(100% - 48px));max-width:none;max-height:calc(100dvh - 64px);margin:auto;padding:0;border:0;border-radius:24px;background:#fff;color:var(--ink);box-shadow:0 24px 80px #290c0f35;overflow:visible}
+.sale-dialog::backdrop{background:rgba(35,39,49,.72)}
+.sale-dialog-scroll{max-height:calc(100dvh - 64px);overflow-y:auto;border-radius:24px;scrollbar-width:thin}
+.sale-dialog-media{height:270px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:24px 24px 0 0;background:linear-gradient(to bottom,#ff94a0 0%,#ffb2ba 60%,#fff 100%)}
+.sale-dialog-media::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:80px;background:url('assets/sale-modal-wave.png') center bottom/100% 100% no-repeat}
+.sale-dialog-media img{position:relative;z-index:1;width:444px;height:250px;object-fit:contain}
+.sale-dialog-body{display:flex;flex-direction:column;gap:24px;padding:8px 32px 32px}
+.sale-dialog-intro{display:flex;flex-direction:column;gap:8px}
+.sale-dialog h2{font-size:28px;line-height:1.4;font-weight:700}
+.sale-dialog p,.sale-dialog li{font-size:18px;font-weight:500;line-height:1.4}
+.sale-dialog-intro p,.sale-dialog-details li{color:var(--muted)}
+.sale-dialog h3{font-size:20px;font-weight:700;line-height:1.4}
+.sale-dialog-details{display:flex;flex-direction:column;gap:12px}
+.sale-dialog-details ul{display:flex;flex-direction:column;gap:12px;list-style:none;margin:0;padding:0}
+.sale-dialog-details li{display:flex;align-items:flex-start;gap:16px}
+.sale-dialog-details li::before{content:"";display:block;flex:none;width:10px;height:25px;background:url('assets/sale-modal-point.svg') center/contain no-repeat}
+.sale-dialog-price{display:flex;flex-direction:column;gap:12px;text-align:center}
+.sale-dialog-price strong{display:grid;place-items:center;min-height:49px;padding:12px 16px;border-radius:12px;background:var(--pink);color:#fff;font-size:18px;font-weight:700;line-height:1.4}
+.sale-dialog-price small{color:var(--muted);font-size:16px;font-weight:500;line-height:1.4}
+.sale-dialog-close{position:absolute;z-index:2;top:-26px;right:-26px;width:52px;height:52px;display:grid;place-items:center;padding:10px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 8px #290c0f14}
+.sale-dialog-close img{width:32px;height:32px}
+.sale-dialog-close:hover{background:#fef5f5}
+.sale-dialog-close:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+.sale-dialog-handle{display:none}
+@media(max-width:600px){
+  .sale-dialog{position:fixed;top:auto;bottom:0;left:0;right:0;width:100%;max-height:92dvh;margin:0;border-radius:24px 24px 0 0;overflow:hidden;transform:translateY(102%);transition:transform .34s cubic-bezier(.22,1,.36,1)}
+  .sale-dialog.is-open{transform:translateY(0)}
+  .sale-dialog::backdrop{opacity:0;transition:opacity .34s ease}
+  .sale-dialog.is-open::backdrop{opacity:1}
+  .sale-dialog-handle{position:absolute;z-index:3;top:0;left:0;display:flex;align-items:center;justify-content:center;width:100%;height:32px;padding:0;border:0;background:transparent;touch-action:none;cursor:grab}
+  .sale-dialog-handle span{display:block;width:40px;height:5px;border-radius:5px;background:#fff;box-shadow:0 1px 4px #43485533}
+  .sale-dialog-handle:active{cursor:grabbing}
+  .sale-dialog-handle:focus-visible{outline:2px solid var(--pink);outline-offset:-4px}
+  .sale-dialog-scroll{max-height:92dvh;border-radius:0;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .sale-dialog-scroll::-webkit-scrollbar{display:none}
+  .sale-dialog-media{height:210px}
+  .sale-dialog-media img{width:min(90%,340px);height:190px}
+  .sale-dialog-body{gap:20px;padding:12px 20px calc(24px + env(safe-area-inset-bottom,0px))}
+  .sale-dialog h2{font-size:22px}
+  .sale-dialog h3{font-size:18px}
+  .sale-dialog p,.sale-dialog li{font-size:16px}
+  .sale-dialog-close{display:none}
+}
+@media(max-width:325px){.sale-dialog-body{padding-left:16px;padding-right:16px}.sale-dialog h2{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.sale-dialog,.sale-dialog::backdrop{transition:none}}

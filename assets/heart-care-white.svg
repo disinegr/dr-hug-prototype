@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 108" fill="none" role="img" aria-labelledby="title">
+  <title id="title">Сердце и медицинский плюс</title>
+  <path d="M64 76C52 94 38 101 24 96 12 92 6 80 6 67M64 76c12 18 26 25 40 20 12-4 18-16 18-29" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M64 76c-5-5-11-10-17-16-11-10-18-18-18-28 0-11 8-19 19-19 7 0 12 3 16 9 4-6 9-9 16-9 11 0 19 8 19 19 0 10-7 18-18 28-6 6-12 11-17 16Z" fill="#fff"/>
+  <path d="M111 6v23M99.5 17.5h23" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+</svg>

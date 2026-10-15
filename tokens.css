@@ -1,0 +1,240 @@
+/* Exported from the Dr.Hug Figma file. */
+:root {
+  /* Brand Colors */
+  --figma-brand-colors-primary-watermelon: #f04b60;
+  --figma-brand-colors-primary-slate: #434855;
+  --figma-brand-colors-primary-warm-ivory: #ede1da;
+  --figma-brand-colors-primary-white: #ffffff;
+  --figma-brand-colors-secondary-dusty-rose: #b8968a;
+  --figma-brand-colors-secondary-rose-beige: #d1b4a4;
+  --figma-brand-colors-secondary-powder-blush: #decdc3;
+  --figma-brand-colors-secondary-soft-ivory: #eae0d4;
+  --figma-brand-colors-secondary-sand-beige: #ddcebb;
+  --figma-brand-colors-secondary-camel: #b89d80;
+  --figma-brand-colors-third-blue-gray: #aab8c0;
+  --figma-brand-colors-third-cream: #f1e9d9;
+  --figma-brand-colors-third-stone: #c8c6ba;
+  --figma-brand-colors-third-taupe: #b28f80;
+  --figma-brand-colors-third-blush: #d6bfb7;
+  --figma-brand-colors-third-sage: #c9d1c6;
+  --figma-brand-colors-third-golden-sand: #ebbd72;
+  --figma-brand-colors-third-mauve-gray: #a0969f;
+  /* Primitives */
+  --figma-primitives-brand-watermelon-500: #f04b60;
+  --figma-primitives-brand-watermelon-300: #ff94a0;
+  --figma-primitives-brand-watermelon-100: #fef5f5;
+  --figma-primitives-neutral-white-0: #ffffff;
+  --figma-primitives-neutral-white-0-35: rgba(255, 255, 255, 0.35);
+  --figma-primitives-neutral-slate-500: #434855;
+  --figma-primitives-neutral-slate-300: #808899;
+  --figma-primitives-neutral-slate-100: #dadce0;
+  --figma-primitives-neutral-slate-75: #dadde4;
+  --figma-primitives-neutral-slate-50: #e9ebf0;
+  --figma-primitives-neutral-slate-25: #f3f4f8;
+  --figma-primitives-neutral-grey-300: #aab8c0;
+  --figma-primitives-beige-blush-300: #d6bfb7;
+  --figma-primitives-beige-taupe-300: #b28f80;
+  --figma-primitives-beige-mauve-gray-300: #a0969f;
+  --figma-primitives-beige-dusty-rose-300: #b8968a;
+  --figma-primitives-beige-rose-beige-300: #d1b4a4;
+  --figma-primitives-beige-powder-blush-300: #decdc3;
+  --figma-primitives-beige-sand-beige-300: #ddcebb;
+  --figma-primitives-beige-stone-300: #c8c6ba;
+  --figma-primitives-beige-sage-300: #c9d1c6;
+  --figma-primitives-ivory-ivory-75: #f0edeb;
+  --figma-primitives-ivory-ivory-50: #f8f5f3;
+  --figma-primitives-ivory-warm-ivory-100: #ede1da;
+  --figma-primitives-ivory-soft-ivory-100: #eae0d4;
+  --figma-primitives-ivory-cream-100: #f1e9d9;
+  --figma-primitives-golden-golden-sand-300: #ebbd72;
+  --figma-primitives-golden-camel-300: #b89d80;
+  --figma-primitives-utility-blue-500: #4696ff;
+  --figma-primitives-ivory-peach-50: #f8efe8;
+  --figma-primitives-neutral-grey-soft: #f7f7f7;
+  /* Semantic */
+  --figma-semantic-accent-primary: #f04b60;
+  --figma-semantic-accent-soft: #ff94a0;
+  --figma-semantic-content-primary: #434855;
+  --figma-semantic-content-secondary: #808899;
+  --figma-semantic-content-disabled: #dadce0;
+  --figma-semantic-content-inverse: #ffffff;
+  --figma-semantic-content-accent: #f04b60;
+  --figma-semantic-surface-page: #f8f5f3;
+  --figma-semantic-surface-default: #ffffff;
+  --figma-semantic-surface-muted: #f3f4f8;
+  --figma-semantic-surface-translucent: rgba(255, 255, 255, 0.35);
+  --figma-semantic-surface-accent: #f04b60;
+  --figma-semantic-surface-accent-subtle: #fef5f5;
+  --figma-semantic-surface-secondary: #f0edeb;
+  --figma-semantic-decorative-golden: #ebbd72;
+  --figma-semantic-decorative-blue: #4696ff;
+  --figma-semantic-decorative-sage: #c9d1c6;
+  --figma-semantic-border-default: #eae0d4;
+  --figma-semantic-border-subtle: #f8f5f3;
+  --figma-semantic-border-strong: #e9ebf0;
+  --figma-semantic-border-contrast: #434855;
+  --figma-semantic-border-hover: #dadde4;
+  /* Spacing */
+  --figma-spacing-spacing-0: 0px;
+  --figma-spacing-spacing-4: 4px;
+  --figma-spacing-spacing-8: 8px;
+  --figma-spacing-spacing-12: 12px;
+  --figma-spacing-spacing-16: 16px;
+  --figma-spacing-spacing-20: 20px;
+  --figma-spacing-spacing-24: 24px;
+  --figma-spacing-spacing-32: 32px;
+  --figma-spacing-spacing-40: 40px;
+  --figma-spacing-spacing-48: 48px;
+  --figma-spacing-spacing-64: 64px;
+  --figma-spacing-spacing-80: 80px;
+  --figma-spacing-spacing-96: 96px;
+  /* Radius */
+  --figma-radius-radius-0: 0px;
+  --figma-radius-radius-4: 4px;
+  --figma-radius-radius-8: 8px;
+  --figma-radius-radius-12: 12px;
+  --figma-radius-radius-16: 16px;
+  --figma-radius-radius-24: 24px;
+  --figma-radius-radius-full: 9999px;
+  /* Responsive Layout */
+  --figma-responsive-layout-viewport-width: 1920px;
+  --figma-responsive-layout-container-max: 1200px;
+  --figma-responsive-layout-gutter-page: 360px;
+  --figma-responsive-layout-grid-columns: 12;
+  --figma-responsive-layout-grid-gap: 24px;
+  --figma-responsive-layout-section-gap: 80px;
+  /* Typography Metrics */
+  --figma-typography-metrics-display-size: 42px;
+  --figma-typography-metrics-display-line-height: 50px;
+  --figma-typography-metrics-h1-size: 36px;
+  --figma-typography-metrics-h1-line-height: 44px;
+  --figma-typography-metrics-h2-size: 28px;
+  --figma-typography-metrics-h2-line-height: 36px;
+  --figma-typography-metrics-h3-size: 24px;
+  --figma-typography-metrics-h3-line-height: 32px;
+  --figma-typography-metrics-title-size: 20px;
+  --figma-typography-metrics-title-line-height: 28px;
+  --figma-typography-metrics-body-lg-size: 18px;
+  --figma-typography-metrics-body-lg-line-height: 28px;
+  --figma-typography-metrics-body-size: 16px;
+  --figma-typography-metrics-body-line-height: 24px;
+  --figma-typography-metrics-label-size: 14px;
+  --figma-typography-metrics-label-line-height: 20px;
+  --figma-typography-metrics-caption-size: 12px;
+  --figma-typography-metrics-caption-line-height: 16px;
+  /* Responsive Font Sizes */
+  --figma-responsive-font-sizes-caption-size: 14px;
+  --figma-responsive-font-sizes-body-size: 18px;
+  --figma-responsive-font-sizes-body-large-size: 20px;
+  --figma-responsive-font-sizes-title-size: 24px;
+  --figma-responsive-font-sizes-heading-small-size: 28px;
+  --figma-responsive-font-sizes-heading-large-size: 42px;
+  --figma-responsive-font-sizes-button-size: 18px;
+  --figma-responsive-font-sizes-font-family-muller: "Muller";
+}
+@media (max-width: 1024px) {
+  :root {
+    --figma-responsive-layout-viewport-width: 1024px;
+    --figma-responsive-layout-container-max: 976px;
+    --figma-responsive-layout-gutter-page: 24px;
+    --figma-responsive-layout-grid-columns: 8;
+    --figma-responsive-layout-grid-gap: 20px;
+    --figma-responsive-layout-section-gap: 64px;
+    --figma-typography-metrics-display-size: 36px;
+    --figma-typography-metrics-display-line-height: 44px;
+    --figma-typography-metrics-h1-size: 32px;
+    --figma-typography-metrics-h1-line-height: 40px;
+    --figma-typography-metrics-h2-size: 28px;
+    --figma-typography-metrics-h2-line-height: 36px;
+    --figma-typography-metrics-h3-size: 24px;
+    --figma-typography-metrics-h3-line-height: 32px;
+    --figma-typography-metrics-title-size: 20px;
+    --figma-typography-metrics-title-line-height: 28px;
+    --figma-typography-metrics-body-lg-size: 18px;
+    --figma-typography-metrics-body-lg-line-height: 28px;
+    --figma-typography-metrics-body-size: 16px;
+    --figma-typography-metrics-body-line-height: 24px;
+    --figma-typography-metrics-label-size: 14px;
+    --figma-typography-metrics-label-line-height: 20px;
+    --figma-typography-metrics-caption-size: 12px;
+    --figma-typography-metrics-caption-line-height: 16px;
+    --figma-responsive-font-sizes-caption-size: 14px;
+    --figma-responsive-font-sizes-body-size: 18px;
+    --figma-responsive-font-sizes-body-large-size: 20px;
+    --figma-responsive-font-sizes-title-size: 22px;
+    --figma-responsive-font-sizes-heading-small-size: 26px;
+    --figma-responsive-font-sizes-heading-large-size: 38px;
+    --figma-responsive-font-sizes-button-size: 18px;
+    --figma-responsive-font-sizes-font-family-muller: "Muller";
+  }
+}
+@media (max-width: 768px) {
+  :root {
+    --figma-responsive-layout-viewport-width: 768px;
+    --figma-responsive-layout-container-max: 720px;
+    --figma-responsive-layout-gutter-page: 24px;
+    --figma-responsive-layout-grid-columns: 8;
+    --figma-responsive-layout-grid-gap: 16px;
+    --figma-responsive-layout-section-gap: 64px;
+    --figma-typography-metrics-display-size: 32px;
+    --figma-typography-metrics-display-line-height: 40px;
+    --figma-typography-metrics-h1-size: 28px;
+    --figma-typography-metrics-h1-line-height: 36px;
+    --figma-typography-metrics-h2-size: 24px;
+    --figma-typography-metrics-h2-line-height: 32px;
+    --figma-typography-metrics-h3-size: 20px;
+    --figma-typography-metrics-h3-line-height: 28px;
+    --figma-typography-metrics-title-size: 18px;
+    --figma-typography-metrics-title-line-height: 26px;
+    --figma-typography-metrics-body-lg-size: 16px;
+    --figma-typography-metrics-body-lg-line-height: 24px;
+    --figma-typography-metrics-body-size: 16px;
+    --figma-typography-metrics-body-line-height: 24px;
+    --figma-typography-metrics-label-size: 14px;
+    --figma-typography-metrics-label-line-height: 20px;
+    --figma-typography-metrics-caption-size: 12px;
+    --figma-typography-metrics-caption-line-height: 16px;
+    --figma-responsive-font-sizes-caption-size: 14px;
+    --figma-responsive-font-sizes-body-size: 16px;
+    --figma-responsive-font-sizes-body-large-size: 18px;
+    --figma-responsive-font-sizes-title-size: 20px;
+    --figma-responsive-font-sizes-heading-small-size: 24px;
+    --figma-responsive-font-sizes-heading-large-size: 34px;
+    --figma-responsive-font-sizes-button-size: 16px;
+    --figma-responsive-font-sizes-font-family-muller: "Muller";
+  }
+}
+@media (max-width: 425px) {
+  :root {
+    --figma-responsive-layout-viewport-width: 425px;
+    --figma-responsive-layout-container-max: 393px;
+    --figma-responsive-layout-gutter-page: 16px;
+    --figma-responsive-layout-grid-columns: 4;
+    --figma-responsive-layout-section-gap: 48px;
+    --figma-responsive-font-sizes-caption-size: 14px;
+    --figma-responsive-font-sizes-body-size: 16px;
+    --figma-responsive-font-sizes-body-large-size: 18px;
+    --figma-responsive-font-sizes-title-size: 20px;
+    --figma-responsive-font-sizes-heading-small-size: 22px;
+    --figma-responsive-font-sizes-heading-large-size: 28px;
+    --figma-responsive-font-sizes-button-size: 16px;
+    --figma-responsive-font-sizes-font-family-muller: "Muller";
+  }
+}
+@media (max-width: 320px) {
+  :root {
+    --figma-responsive-layout-viewport-width: 320px;
+    --figma-responsive-layout-container-max: 288px;
+    --figma-responsive-layout-gutter-page: 16px;
+    --figma-responsive-layout-grid-columns: 4;
+    --figma-responsive-layout-section-gap: 40px;
+    --figma-responsive-font-sizes-caption-size: 14px;
+    --figma-responsive-font-sizes-body-size: 16px;
+    --figma-responsive-font-sizes-body-large-size: 16px;
+    --figma-responsive-font-sizes-title-size: 18px;
+    --figma-responsive-font-sizes-heading-small-size: 20px;
+    --figma-responsive-font-sizes-heading-large-size: 24px;
+    --figma-responsive-font-sizes-button-size: 14px;
+    --figma-responsive-font-sizes-font-family-muller: "Muller";
+  }
+}

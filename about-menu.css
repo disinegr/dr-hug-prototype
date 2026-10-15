@@ -1,0 +1,14 @@
+.nav-about{position:relative;display:inline-flex;align-items:center}
+.nav-about-trigger{display:inline-flex;align-items:center;gap:4px;padding:0;border:0;background:none;color:inherit;font:inherit;font-weight:700;white-space:nowrap}
+.nav-about-trigger img{width:24px;height:24px}
+.nav-about-trigger:hover,.nav-about-trigger:focus-visible{color:var(--pink)}
+.nav-about-trigger:focus-visible{outline:2px solid var(--pink);outline-offset:4px;border-radius:4px}
+.nav-about-list{display:none;position:absolute;top:100%;left:0;z-index:20;min-width:260px;margin-top:0;padding:12px 16px;border-radius:12px;background:#fff;box-shadow:0 12px 28px #43485524;white-space:normal;flex-direction:column;align-items:flex-start;gap:12px}
+.nav-about.is-open>.nav-about-list{display:flex}
+.nav-about-list>a,.nav-about-list>span{font:inherit;line-height:1.4}
+.nav-about-list>span{color:var(--muted)}
+@media(max-width:1100px){
+  .nav-about{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .nav-about-list{display:flex;position:static;min-width:0;margin:0 0 0 16px;padding:0;border-radius:0;box-shadow:none;gap:8px}
+  .nav-about.is-closed>.nav-about-list{display:none}
+}

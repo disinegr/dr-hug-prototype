@@ -1,0 +1,591 @@
+/* Breakpoints and section geometry follow the four supplied Figma frames. */
+.site-shell{margin-bottom:24px}
+.site-header{position:relative;z-index:10}
+.doctor-card{height:auto;min-height:548px}
+.doctor-details{gap:24px}
+.doctor-person,.doctor-booking{min-width:0}
+.doctor-booking{display:flex;flex-direction:column;align-items:stretch}
+.doctor-person h3,.doctor-person p{display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.doctor-person h3{-webkit-line-clamp:2;line-clamp:2}
+.doctor-person p{-webkit-line-clamp:4;line-clamp:4;margin-top:12px}
+.doctor-photo img{height:auto;top:-11%;object-fit:initial}
+.doctor-photo .doctor-profile-link{position:absolute;z-index:2;inset:0}
+.doctor-photo .doctor-profile-link:focus-visible{outline:3px solid var(--pink);outline-offset:-3px}
+.doctor-person h3 a:hover{color:var(--pink)}
+.values-feature img{mask-image:linear-gradient(to right,transparent 0%,#000 35%)}
+.hero-picture{position:absolute;inset:0;display:block;width:100%;height:100%}
+.hero{touch-action:pan-y;cursor:grab}
+.hero.is-dragging{cursor:grabbing;user-select:none}
+.hero-picture img{display:block;width:100%;height:100%;object-fit:cover}
+.hero-picture img{-webkit-user-drag:none;user-select:none}
+.hero-slide{opacity:0;pointer-events:none;transition:opacity .65s ease}
+.hero-slide.is-active{opacity:1}
+.hero.has-track .hero-track{position:absolute;inset:0;display:flex;width:100%;height:100%;transform:translate3d(-100%,0,0);will-change:transform}
+.hero.has-track .hero-track .hero-slide{position:relative;inset:auto;flex:0 0 100%;width:100%;height:100%;opacity:1;transition:none}
+.hero.is-dragging .hero-action,.hero.is-settling .hero-action{pointer-events:none}
+.hero-action{z-index:2}
+.hero-steps{z-index:3;width:auto;min-width:0;height:44px;bottom:0;align-items:center;gap:8px}
+.hero-steps button{appearance:none;display:block;flex:0 0 44px;width:44px;height:44px;padding:20px 0;border:0;background:transparent;cursor:pointer}
+.hero-steps button.active{background:transparent}
+.hero-steps button::before{content:"";display:block;width:100%;height:4px;border-radius:8px;background:rgba(255,255,255,.35)}
+.hero-steps button.active::before{background:#fff}
+.hero-steps button:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:4px}
+.review-stars{display:none}
+.review-viewport{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x;cursor:grab}
+.review-viewport::-webkit-scrollbar{display:none}
+.review-viewport.is-dragging{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.review-viewport:focus-visible{outline:2px solid var(--pink);outline-offset:4px;border-radius:8px}
+.review-track{width:max-content}
+.review-card{flex:none;scroll-snap-align:start}
+.review-card>p{max-height:140px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5}
+.faq-answer{overflow:hidden}
+.faq-answer p{margin-top:16px}
+.header-icon{display:none;align-items:center;justify-content:center;flex:none;width:44px;height:44px;padding:10px;border:0;border-radius:12px;background:#fff;color:var(--ink)}
+.header-icon img{width:24px;height:24px;max-width:none}
+.menu-lines{position:relative;display:block;flex:none;width:24px;height:24px}
+.menu-lines::before,.menu-lines::after{position:absolute;top:11px;left:4px;display:block;width:16px;height:2px;border-radius:2px;background:var(--muted);content:"";transition:transform .28s cubic-bezier(.22,1,.36,1),background-color .2s ease}
+.menu-lines::before{transform:translateY(-4px)}
+.menu-lines::after{transform:translateY(4px)}
+.menu-toggle[aria-expanded="true"] .menu-lines::before{transform:rotate(45deg)}
+.menu-toggle[aria-expanded="true"] .menu-lines::after{transform:rotate(-45deg)}
+.accordion-content{transform-origin:top}
+.price-card,.faq-item{scroll-margin-top:20px}
+
+@media(max-width:1100px){
+  .site-shell{width:calc(100% - 48px);margin:24px auto 24px}
+  .site-header{height:73px;padding:12px 16px}
+  .header-top,.nav{display:none}
+  .nav.is-open{display:flex;position:relative;z-index:5;flex-direction:column;align-items:stretch;gap:12px;margin:12px -16px 0;padding:16px;background:#fff;border-radius:0 0 16px 16px;box-shadow:none}
+  .header-main{margin:0;height:49px;gap:24px}
+  .header-main .logo{width:162px}
+  .header-main .logo-mark{width:62px}
+  .header-main .logo-word{width:94px}
+  .header-appointment{margin-left:0}
+  .menu-toggle{display:flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none;padding:12px;border:0;border-radius:12px;background:#fff}
+  main{margin-top:42px}
+  .hero{height:500px;aspect-ratio:auto}
+  .hero-slide[data-slide-index="1"] img{object-position:left center}
+  .hero-action{left:6%;top:68%;width:32%;height:12%}
+  .intro-banner{margin-top:80px;height:152px}
+  .intro-banner h2{font-size:28px}
+  .doctor-details h3{font-size:26px}
+  .rating-copy h2{font-size:26px}
+  .section,.prices{margin-top:80px}
+  .section-head{margin-bottom:32px}
+  h2{font-size:38px}
+  .doctor-grid{gap:16px}
+  .doctor-card{height:auto;min-height:550px}
+  .doctor-card:nth-child(n+4){display:none}
+  .rating-card{margin-top:80px}
+  .site-footer{margin-top:80px}
+}
+
+@media(max-width:800px){
+  body{font-size:16px}
+  .site-shell{width:calc(100% - 48px);margin:24px auto 24px}
+  .site-header{height:72px}
+  .header-main{justify-content:space-between;height:48px;gap:8px}
+  .header-main .logo{margin-right:auto}
+  .search-box{display:none}
+  .search-box.is-open{display:flex;position:absolute;z-index:10;top:calc(100% + 8px);left:0;width:100%;background:#fff;box-shadow:0 8px 24px #43485524}
+  .search-toggle{display:flex}
+  .header-appointment{min-height:46px;font-size:16px;padding:11px 16px}
+  main{margin-top:64px}
+  .hero{width:calc(100% + 48px);height:500px;margin-left:-24px;border-radius:0}
+  .hero-action{left:6%;top:64%;width:32%;height:10%}
+  .hero-steps{width:auto;min-width:0;bottom:0}
+  .intro-banner{margin-top:64px;height:130px;padding:16px 24px}
+  .intro-banner .intro-graphic{width:123px;height:82px}
+  .intro-banner h2{font-size:28px}
+  .intro-banner p{font-size:16px}
+  .section,.prices{margin-top:64px}
+  .section-head{margin-bottom:32px}
+  h2{font-size:34px}
+  .price-card{padding:24px;margin-bottom:24px}
+  .accordion-heading{font-size:24px}
+  .vaccine-banner{height:112px;padding:16px;flex-wrap:nowrap}
+  .vaccine-banner img{width:64px;height:64px}
+  .vaccine-banner strong{font-size:20px}
+  .vaccine-banner p{font-size:18px}
+  .vaccine-banner .button{margin:0}
+  .price-table{font-size:16px}
+  .price-table th,.price-table td{padding:14px 16px}
+  .doctor-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .doctor-card{height:auto;min-height:424px}
+  .doctor-photo{height:182px}
+  .doctor-details{padding:16px}
+  .doctor-details h3{font-size:20px}
+  .doctor-details p{font-size:16px;margin-top:12px}
+  .doctor-details strong{font-size:20px}
+  .doctor-details .button{min-height:46px;font-size:16px;margin-top:16px}
+  .values-feature{display:grid;grid-template-columns:1fr 1fr;height:254px;min-height:0}
+  .values-feature-copy{padding:16px;width:auto}
+  .values-feature h3{font-size:24px}
+  .values-feature p{font-size:16px}
+  .values-feature img{position:static;width:100%;height:100%}
+  .value-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .value-grid article{min-height:0;height:auto;padding:16px}
+  .review-card{width:500px;height:247px;padding:24px}
+  .review-card>p{font-size:20px}
+  .rating-card{height:256px;margin-top:64px;grid-template-columns:247px 1fr}
+  .rating-copy{padding:24px 12px 24px 24px}
+  .rating-copy h2{font-size:24px}
+  .rating-copy img{width:143px;height:86px}
+  .rating-copy p{font-size:16px}
+  .faq-item{padding:24px;margin-bottom:24px}
+  .faq-item summary{font-size:24px}
+  .contact-grid{display:grid;grid-template-columns:232px minmax(0,1fr);gap:24px;height:478px}
+  .contact-cards{display:flex;gap:16px}
+  .contact-cards article{height:124px;min-height:0;flex:none;padding:16px}
+  .contact-cards strong,.contact-cards a{font-size:16px}
+  .contact-cards .round-clock{height:198px;grid-column:auto}
+  .round-clock img{width:100%;height:auto;aspect-ratio:242/132;object-fit:cover}
+  .map-card{height:auto}
+  .site-footer{display:flex;flex-direction:column;gap:0;margin-top:64px;min-height:492px;padding:24px}
+  .footer-about{display:contents}
+  .footer-about .logo{order:0;margin-bottom:16px}
+  .footer-about p{order:1;margin:0 0 32px;font-size:16px}
+  .footer-links{order:2;display:flex;flex-wrap:wrap;align-content:flex-start;gap:16px;margin-bottom:32px;font-size:16px}
+  .footer-links div{display:contents}
+  .footer-links a{display:block;white-space:nowrap;padding:2px}
+  .footer-contact{order:3;margin:0;gap:12px}
+}
+
+@media(max-width:600px){
+  .site-shell{width:calc(100% - 32px);margin:16px auto}
+  .site-header{width:calc(100% - 16px);height:69px;margin-inline:8px;padding:12px;box-shadow:0 2px 6px #8282820f}
+  .header-main{height:45px;gap:4px}
+  .menu-toggle{margin-left:0}
+  .header-main .logo{width:162px;height:45px}
+  .header-appointment{display:none}
+  .phone-action{display:none}
+  .header-icon,.menu-toggle{width:44px;height:44px;padding:10px}
+  main{margin-top:48px}
+  .hero{width:calc(100% + 32px);height:320px;margin-left:-16px}
+  .hero>img{object-position:center}
+  .hero-action{left:6%;top:62%;width:33%;height:9%}
+  .hero-steps{width:auto;bottom:0}
+  .intro-banner{height:153px;margin-top:48px;padding:16px;flex-direction:column;justify-content:center;gap:8px;border-radius:16px}
+  .intro-banner .intro-graphic{width:78px;height:52px}
+  .intro-banner .intro-graphic:last-child{display:none}
+  .intro-banner h2{font-size:22px}
+  .intro-banner p{font-size:16px;margin-top:8px}
+  .section,.prices{margin-top:48px}
+  .section-head{margin-bottom:24px}
+  h2{font-size:28px}
+  .section-head a{font-size:var(--figma-responsive-font-sizes-button-size)}
+  .price-card{padding:12px;margin-bottom:16px;border-radius:16px}
+  .accordion-heading{font-size:22px;line-height:1.4;gap:12px}
+  .accordion-heading .chevron{width:24px;height:24px}
+  .accordion-content{margin-top:16px}
+  .vaccine-banner{height:auto;min-height:140px;margin-bottom:12px;display:grid;grid-template-columns:48px 1fr;column-gap:12px;row-gap:8px;padding:12px}
+  .vaccine-banner img{width:48px;height:48px}
+  .vaccine-banner strong{font-size:20px}
+  .vaccine-banner p{font-size:16px;margin-top:4px}
+  .vaccine-banner .button{grid-column:1/-1;width:100%;min-height:40px;font-size:var(--figma-responsive-font-sizes-button-size)}
+  .price-table-wrap{border-radius:12px}
+  .price-table{font-size:16px}
+  .price-table thead th{padding:12px;font-size:16px}
+  .price-table thead th:last-child{display:none}
+  .price-table tbody tr{display:block;border-bottom:2px solid var(--line)}
+  .price-table tbody tr:last-child{border-bottom:0}
+  .price-table tbody td{display:block;width:100%;padding:12px;border:0;text-align:left}
+  .price-table tbody td:last-child{padding-top:0;text-align:left;white-space:normal}
+  .price-table .group-row td{padding:12px}
+  .sale-tag{display:flex;width:max-content;margin:8px 0 0}
+  .doctor-grid{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:auto;cursor:grab}
+  .doctor-grid.is-dragging{scroll-snap-type:none;user-select:none;cursor:grabbing}
+  .doctor-grid:focus-visible{outline:2px solid var(--pink);outline-offset:4px;border-radius:8px}
+  .doctor-grid::-webkit-scrollbar,.review-viewport::-webkit-scrollbar{display:none}
+  .doctor-card{display:flex!important;flex:0 0 232px;width:232px;height:auto;min-height:475px;scroll-snap-align:start;border-radius:16px}
+  .doctor-photo{height:200px}
+  .doctor-details{padding:16px}
+  .doctor-details h3{font-size:22px}
+  .doctor-details p{font-size:16px;line-height:1.4;margin-top:8px}
+  .doctor-details strong{font-size:20px}
+  .doctor-details .button{min-height:46px}
+  .values-feature{display:flex;flex-direction:column;height:auto;min-height:0;border-radius:16px}
+  .values-feature-copy{padding:16px 16px 8px;width:100%;height:auto;min-height:210px;flex:none}
+  .values-feature h3{font-size:22px;letter-spacing:-.015em}
+  .values-feature p{font-size:16px;margin-top:16px}
+  .values-feature img{position:static;width:100%;height:256px;flex:none;mask-image:linear-gradient(to bottom,transparent 0%,#000 18%);object-fit:cover}
+  .value-grid{grid-template-columns:1fr;gap:16px;margin-top:16px}
+  .value-grid article{min-height:0;height:auto;display:grid;grid-template-columns:62px 1fr;column-gap:16px;padding:16px;border-radius:16px}
+  .value-grid img{grid-row:1/4;width:62px;height:62px;margin:0}
+  .value-grid h3 br{display:none}
+  .value-grid h3{font-size:20px}
+  .value-grid p{font-size:16px;margin-top:12px}
+  .reviews .section-head h2{max-width:145px;line-height:1.4}
+  .review-track{gap:16px}
+  .review-card{width:254px;height:222px;padding:16px;border-radius:16px;justify-content:flex-start;gap:20px}
+  .review-card>p{font-size:16px;line-height:1.4;max-height:100px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
+  .review-card .review-stars{display:flex;gap:4px}
+  .review-card .review-stars img{width:20px;height:20px}
+  .review-card:first-child .review-stars img:last-child{content:url('assets/star.svg')}
+  .review-bottom{margin-top:auto;font-size:16px}
+  .review-bottom .stars{display:none}
+  .review-bottom a{font-size:16px}
+  .rating-card{height:234px;margin-top:48px;grid-template-columns:221px minmax(0,1fr);border-radius:24px}
+  .rating-copy{padding:16px 12px 16px 16px}
+  .rating-copy h2{font-size:22px;white-space:nowrap}
+  .rating-copy img{width:143px;height:86px}
+  .rating-copy p{font-size:16px}
+  .rating-card .rating-image{background-image:url('assets/rating-425-dog.jpg');background-size:auto 112%;background-position:center bottom;background-repeat:no-repeat}
+  .rating-card .rating-copy h2{white-space:nowrap}
+  .faq-item{padding:16px;margin-bottom:16px;border-radius:16px}
+  .faq-item summary{font-size:20px;display:block}
+  .faq-symbol{width:44px;height:44px;margin-top:16px}
+  .faq-item p{font-size:16px;line-height:1.4}
+  .faq-item[open]{position:relative;padding-bottom:76px}
+  .faq-item[open] .faq-symbol{position:absolute;left:16px;bottom:16px;margin:0}
+  .contact-grid{display:flex;flex-direction:column;gap:24px;height:auto}
+  .contact-cards{display:flex;flex-direction:column;gap:12px}
+  .contact-cards article{height:auto;padding:16px;border-radius:16px;min-height:80px}
+  .contact-cards strong,.contact-cards a{font-size:16px}
+  .contact-cards .round-clock{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;height:114px;min-height:114px;padding:16px}
+  .round-clock strong{align-self:center;flex:1 1 auto;min-width:0;font-size:16px;line-height:1.4}
+  .round-clock img{position:static;flex:0 0 152px;width:152px;height:82px;max-height:none;margin:0;object-fit:cover}
+  .map-card{flex:none;height:432px;border-radius:16px}
+  .site-footer{margin-top:48px;display:flex;flex-direction:column;gap:0;min-height:0;padding:24px;border-radius:24px}
+  .footer-about p{font-size:16px}
+  .footer-about p{margin-bottom:24px}
+  .footer-contact{margin-top:0}
+  .footer-links{gap:16px;margin-bottom:24px;font-size:16px}
+}
+
+@media(max-width:360px){
+  .site-shell{margin:16px auto}
+  .site-header{width:calc(100% - 8px);height:56px;margin-inline:4px;padding:8px 12px;border-radius:12px}
+  .header-main{height:40px}
+  .header-main .logo{width:115px;height:32px}
+  .header-main .logo-mark{width:42px;height:32px}
+  .header-main .logo-word{width:67px}
+  .header-icon,.menu-toggle{width:40px;height:40px;padding:8px}
+  main{margin-top:40px}
+  .hero{height:242px}
+  .hero-action{left:6%;top:62%;width:33%;height:10%}
+  .intro-banner{height:144px;margin-top:40px}
+  .intro-banner h2{font-size:16px}
+  .intro-banner p{font-size:14px;max-width:250px;line-height:1.4}
+  .section,.prices{margin-top:40px}
+  .section-head{margin-bottom:24px}
+  h2{font-size:24px}
+  .section-head a{font-size:var(--figma-responsive-font-sizes-button-size)}
+  .accordion-heading{font-size:20px}
+  .vaccine-banner strong{font-size:18px}
+  .vaccine-banner p{font-size:16px}
+  .vaccine-banner .button{font-size:14px}
+  .price-card{padding:12px}
+  .doctor-card{height:auto;min-height:385px;border-radius:12px}
+  .doctor-photo{height:182px}
+  .doctor-details{padding:12px}
+  .doctor-details h3{font-size:18px}
+  .doctor-details p{font-size:14px;margin-top:8px}
+  .doctor-details strong{font-size:18px}
+  .doctor-details .button{margin-top:8px;font-size:14px}
+  .values-feature{height:auto}
+  .values-feature-copy{height:auto;min-height:268px;padding:12px}
+  .values-feature h3{font-size:18px}
+  .values-feature p{font-size:16px}
+  .value-grid article{display:block;min-height:0;padding:16px}
+  .value-grid img{margin-bottom:16px}
+  .value-grid h3{font-size:18px}
+  .review-card{width:222px;height:206px;gap:20px}
+  .review-card .review-stars img{width:16px;height:16px}
+  .review-card>p{font-size:16px;max-height:88px}
+  .reviews .section-head h2{max-width:110px}
+  .rating-card{height:180px;margin-top:40px;display:block;border-radius:16px}
+  .rating-copy{height:100%;align-items:center}
+  .rating-copy h2{align-self:center;width:100%;font-size:18px;text-align:center}
+  .rating-card .rating-copy h2{white-space:normal}
+  .rating-copy img{width:103px;height:62px}
+  .rating-copy p{font-size:14px;margin-top:8px}
+  .rating-image{display:none}
+  .faq-item summary{font-size:18px}
+  .contact-cards .round-clock{height:112px;min-height:112px;padding:12px;gap:8px}
+  .contact-grid{gap:16px}
+  .contact-cards{gap:16px}
+  .round-clock strong{flex:1 1 0;min-width:0;width:auto}
+  .round-clock img{flex:0 0 clamp(120px,43vw,140px);width:clamp(120px,43vw,140px);height:78px;max-height:none;object-fit:cover}
+  .map-card{height:356px}
+  .site-footer{margin-top:40px;padding:16px}
+  .footer-about .logo{width:115px;height:32px;margin-bottom:12px}
+  .footer-about .logo-mark{width:42px;height:32px}
+  .footer-about .logo-word{width:67px}
+  .footer-about p{font-size:14px;line-height:1.4}
+  .footer-links{gap:12px;font-size:16px}
+}
+
+@media(prefers-reduced-motion:reduce){.hero-slide,.menu-lines,.menu-lines::before,.menu-lines::after{transition:none}}
+
+/* The header stays in the document flow, then slides out or back as scroll direction changes. */
+.site-header{position:sticky;top:24px;z-index:50;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease;will-change:transform}
+.site-header.is-hidden{transform:translateY(calc(-100% - 32px));pointer-events:none}
+.site-header.is-visible{box-shadow:0 10px 28px rgba(67,72,85,.12)}
+
+.quick-actions{display:none}
+@media(max-width:1024px){
+  .site-shell{max-width:none;width:calc(100% - 40px);margin:20px auto 20px}
+  .site-header{top:20px}
+  .quick-actions{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:80;display:flex;flex-direction:column;gap:12px}
+  .quick-action{display:grid;place-items:center;width:52px;height:52px;padding:0;border:0;border-radius:16px;background:var(--pink);box-shadow:0 7px 20px rgba(67,72,85,.2);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+  .quick-action:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(67,72,85,.24)}
+  .quick-action:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+  .quick-action img{width:26px;height:26px;max-width:none}
+  .quick-chat-hint{position:absolute;right:calc(100% + 12px);bottom:0;max-width:calc(100vw - 100px);padding:10px 12px;border-radius:12px;background:#fff;color:var(--ink);box-shadow:0 7px 24px rgba(67,72,85,.16);font-size:14px;font-weight:700;white-space:nowrap}
+  .quick-chat-hint[hidden]{display:none}
+}
+@media(max-width:800px){
+  .hero{width:calc(100% + 40px);margin-left:-20px}
+}
+@media(max-width:600px){
+  .site-header{width:100%;margin-inline:0}
+}
+@media(max-width:325px){
+  .site-shell{width:calc(100% - 32px);margin:16px auto 16px}
+  .site-header{top:16px;width:100%;margin-inline:0}
+  .hero{width:calc(100% + 32px);margin-left:-16px}
+  #contacts .round-clock{height:auto;min-height:0;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:8px}
+  #contacts .round-clock strong{flex:none;align-self:auto;width:100%}
+  #contacts .round-clock img{flex:none;width:100%;height:128px;object-fit:cover}
+  .quick-actions{right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .quick-action{width:48px;height:48px;border-radius:14px}
+  .quick-action img{width:24px;height:24px}
+}
+@media(prefers-reduced-motion:reduce){.site-header,.quick-action{transition:none}}
+
+/* Feedback for controls without changing their layout or hit area. */
+.button,.header-icon,.menu-toggle,.accordion-heading,.faq-item summary,.faq-symbol,.section-head a,.section-head a::after,.review-bottom a,.nav a,.footer-links a,.hero-action,.hero-steps button::before{
+  transition:background-color .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease,transform .22s cubic-bezier(.22,1,.36,1),opacity .22s ease;
+}
+.button:focus-visible,.header-icon:focus-visible,.menu-toggle:focus-visible,.accordion-heading:focus-visible,.faq-item summary:focus-visible,.section-head a:focus-visible,.review-bottom a:focus-visible,.nav a:focus-visible,.footer-links a:focus-visible,.hero-action:focus-visible{
+  outline:2px solid var(--pink);outline-offset:3px;
+}
+.menu-toggle[aria-expanded="true"] .menu-lines::before,.menu-toggle[aria-expanded="true"] .menu-lines::after{background:var(--pink)}
+@media(hover:hover){
+  .button-primary:hover,.quick-action:hover{background-color:#fa6275;box-shadow:0 8px 18px rgba(240,75,96,.22);transform:translateY(-2px)}
+  .button-outline:hover{background-color:#fef5f5;box-shadow:0 5px 14px rgba(240,75,96,.12);transform:translateY(-2px)}
+  .header-icon:hover,.menu-toggle:hover{background-color:#fef5f5}
+  .menu-toggle:hover .menu-lines::before,.menu-toggle:hover .menu-lines::after{background:var(--pink)}
+  .accordion-heading:hover,.faq-item summary:hover{color:var(--pink)}
+  .faq-item summary:hover .faq-symbol{border-color:var(--pink);background-color:#fef5f5}
+  .section-head a:hover,.review-bottom a:hover{color:#d83950}
+  .section-head a:hover::after{transform:translateX(3px)}
+  .header-top .header-address a:hover,.footer-contact>a:hover{color:#d83950}
+  .hero-action:hover{background-color:rgba(255,255,255,.12);box-shadow:inset 0 0 0 2px rgba(255,255,255,.32)}
+  .hero-steps button:hover::before{background:rgba(255,255,255,.7)}
+}
+.button:active,.quick-action:active{transform:translateY(0) scale(.98)}
+@media(prefers-reduced-motion:reduce){
+  .button,.header-icon,.menu-toggle,.accordion-heading,.faq-item summary,.faq-symbol,.section-head a,.section-head a::after,.review-bottom a,.nav a,.footer-links a,.hero-action,.hero-steps button::before,.menu-lines::before,.menu-lines::after{transition:none}
+}
+
+/* Content blocks use a consistent inset on narrow phones. */
+@media(max-width:475px){
+  .price-card,.vaccine-banner,.doctor-details,.values-feature-copy,.rating-copy{padding:16px}
+  .price-table thead th,.price-table tbody td,.price-table .group-row td{padding:16px}
+  .price-table tbody td:last-child{padding-top:0}
+  .values-feature h3 br{display:none}
+}
+
+@media(max-width:600px){
+  .price-table tbody td.sale-service{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .price-table .sale-service .sale-tag{order:-1;margin:0}
+  .price-table tbody .group-row td{padding:12px}
+}
+@media(max-width:475px){
+  .price-table tbody .group-row td{padding:16px}
+}
+
+@media(max-width:600px){
+  .price-table,.price-table thead,.price-table tbody,.price-table tr{display:block;width:100%}
+  .price-table thead th:first-child,.price-table tbody td{display:block;width:100%}
+}
+
+/* The department name remains a link; its detail page opens from the submenu. */
+.nav-departments{position:relative;display:inline-flex;align-items:center}
+.nav-departments>.nav-therapy{display:none;position:absolute;top:100%;left:0;z-index:20;min-width:260px;margin-top:0;padding:12px 16px;border-radius:12px;background:#fff;box-shadow:0 12px 28px #43485524;white-space:normal}
+.nav-departments:hover>.nav-therapy,.nav-departments:focus-within>.nav-therapy{display:flex}
+@media(max-width:1100px){
+  .nav-departments{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .nav-departments>.nav-therapy{display:flex;position:static;min-width:0;margin:0 0 0 16px;padding:0;border-radius:0;box-shadow:none;color:var(--muted)}
+}
+.departments-page .department-card[href]{color:inherit;text-decoration:none;transition:box-shadow .2s ease,transform .2s ease}
+.departments-page .department-card[href]:hover{box-shadow:0 12px 30px #43485516;transform:translateY(-2px)}
+.departments-page .department-card[href]:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+
+.logo .logo-image{display:block;width:100%;height:100%;max-width:none;object-fit:contain;object-position:left center}
+
+@media(max-width:600px){
+  .header-main{display:grid;grid-template-columns:minmax(0,1fr) repeat(2,44px);gap:4px;align-items:center}
+  .header-main .logo{min-width:0;max-width:100%;margin-right:0;overflow:hidden}
+  .logo .logo-image{max-width:100%}
+}
+@media(min-width:361px) and (max-width:400px){
+  .header-main{grid-template-columns:minmax(0,1fr) repeat(2,40px)}
+  .header-main .logo{width:136px;height:38px}
+  .header-icon,.menu-toggle{width:40px;height:40px;padding:8px}
+}
+@media(max-width:360px){
+  .header-main{grid-template-columns:minmax(0,1fr) repeat(2,40px)}
+}
+@media(max-width:400px){
+  .intro-banner{height:auto;min-height:0;padding:20px 16px;gap:8px}
+}
+
+/* Muller looks slightly high when its line box is mathematically centered. */
+.button{padding-top:13px;padding-bottom:9px}
+
+/* Value cards grow with their copy at desktop and small laptop widths. */
+@media(min-width:801px){
+  .value-grid article{height:auto;min-height:368px}
+}
+
+@media(min-width:1025px) and (max-width:1100px){
+  .site-header{height:106px}
+  .header-top{display:flex}
+  .header-main{margin-top:16px}
+}
+
+@media(max-width:1024px){
+  .nav.is-open{max-height:calc(100dvh - 96px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+  .nav.is-open::-webkit-scrollbar{display:none}
+  .nav.is-open .header-top{display:flex;flex-direction:column;align-items:stretch;gap:12px;width:100%;min-height:0;padding:16px 0 0;border-top:1px solid var(--line);font-size:14px;line-height:1.4;white-space:normal}
+  .nav.is-open .header-address{display:block}
+  .nav.is-open .header-location{display:block;overflow-wrap:anywhere}
+  .nav.is-open .max-link{align-self:flex-start}
+}
+
+/* Shared compact menu and search panels. */
+.header-overlay-backdrop[hidden],.header-search-panel[hidden]{display:none}
+.header-overlay-backdrop{position:fixed;inset:0;z-index:49;background:rgba(25,27,32,.7)}
+body.header-search-open .header-overlay-backdrop{z-index:100;background:rgba(248,245,243,.4);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+@media(max-width:1100px){
+  .header-overlay-backdrop,
+  body.header-search-open .header-overlay-backdrop{background:rgba(25,27,32,.7);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+}
+body.header-overlay-open{overflow:hidden}
+body.header-overlay-open .quick-actions{visibility:hidden}
+.site-header.has-open-menu,.site-header.has-open-search{z-index:50}
+.header-menu-columns{display:none}
+.header-menu-booking{display:none}
+.header-search-panel{position:fixed;z-index:101;top:24px;left:50%;width:min(1200px,calc(100vw - 48px));max-height:calc(100dvh - 48px);overflow-y:auto;transform:translateX(-50%);padding:12px 16px 20px;border-radius:16px;background:#fff;box-shadow:0 16px 36px #25293430;scrollbar-width:none}
+.header-search-panel::-webkit-scrollbar{display:none}
+.header-search-field{display:flex;align-items:center;gap:10px;height:49px;margin-bottom:16px;padding:0 16px;border:2px solid var(--line);border-radius:12px}
+.header-search-field:focus-within{border-color:var(--pink)}
+.header-search-field img{width:24px;height:24px;flex:none}
+.header-search-field input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:500 var(--field-control-font-size)/1.4 Muller,Arial,sans-serif}
+.header-search-field input::placeholder{color:var(--muted);opacity:1}
+.header-search-title{margin-bottom:12px;color:var(--muted);font-size:14px;font-weight:500}
+.header-search-results{display:flex;flex-direction:column;gap:12px}
+.header-search-results a,.header-search-empty{font-size:16px;font-weight:500;line-height:1.4}
+.header-search-results a{display:block;width:fit-content}
+.header-search-results a:hover,.header-search-results a:focus-visible{color:var(--pink)}
+.header-search-results a:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:3px}
+.header-search-empty{color:var(--muted)}
+
+@media(max-width:1024px){
+  .site-header.has-open-menu{--menu-surface:#fff}
+  .header-search-panel{top:20px;width:calc(100vw - 40px);max-height:calc(100dvh - 40px)}
+  .site-header.has-open-menu,
+  .site-header.has-open-menu.is-visible{border-radius:16px 16px 0 0;background:var(--menu-surface);box-shadow:none}
+  .site-header.has-open-menu .header-main{background:var(--menu-surface)}
+  .nav.is-open{display:block;position:absolute;top:calc(100% - 1px);left:0;right:0;z-index:10;max-height:calc(100dvh - 100px);margin:0;padding:12px 16px 16px;overflow-y:auto;border-radius:0 0 16px 16px;background:var(--menu-surface);box-shadow:none;white-space:normal}
+  .nav.is-open>:not(.header-menu-columns):not(.header-top){display:none}
+  .nav.is-open .header-menu-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:0 0 24px}
+  .header-menu-column{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
+  .header-menu-column-title{color:var(--muted);font-size:14px;font-weight:500;line-height:1.4}
+  .header-menu-column a{display:block;font-size:16px;font-weight:500;line-height:1.4;white-space:normal}
+  .header-menu-column a:hover,.header-menu-column a:focus-visible{color:var(--pink)}
+  .header-menu-column a:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:3px}
+  .nav.is-open .header-top{flex-direction:row;align-items:center;flex-wrap:wrap;gap:16px;padding-top:24px;font-weight:700}
+  .nav.is-open .header-top .header-address a{color:var(--pink)}
+  .nav.is-open .header-top .header-location{white-space:normal}
+  .nav.is-open .max-link{align-self:auto}
+}
+@media(max-width:800px){
+  .site-header.has-open-search .search-box{display:none}
+  .nav.is-open .header-menu-columns{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+  .nav.is-open .header-menu-columns{grid-template-columns:1fr;gap:20px}
+  .nav.is-open .header-menu-booking{display:flex;width:100%;border:0}
+  .nav.is-open .header-top{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media(max-width:325px){.header-search-panel{top:16px;width:calc(100vw - 32px);max-height:calc(100dvh - 32px)}}
+
+/* Values become a swipeable row from tablet size down. */
+@media(max-width:768px){
+  .value-grid{display:flex;align-items:stretch;gap:16px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab}
+  .value-grid::-webkit-scrollbar{display:none}
+  .value-grid.is-dragging{scroll-snap-type:none;user-select:none;cursor:grabbing}
+  .value-grid:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+  .value-grid article{display:flex;flex:0 0 clamp(230px,36vw,275px);flex-direction:column;align-items:flex-start;width:auto;min-width:0;height:auto;min-height:0;padding:16px;scroll-snap-align:start}
+  .value-grid img{display:block;flex:none;width:62px;height:62px;margin:0 0 16px;object-fit:contain;-webkit-user-drag:none}
+  .value-grid h3{align-self:stretch;font-size:var(--figma-responsive-font-sizes-title-size);line-height:1.4;white-space:normal}
+  .value-grid h3 br{display:none}
+  .value-grid p{font-size:16px;line-height:1.4;margin-top:12px}
+}
+@media(max-width:400px){
+  .value-grid{gap:16px}
+  .value-grid article{flex-basis:clamp(205px,60vw,222px)}
+}
+
+/* All four home-page swipe rows use the same card width and gap. */
+@media(max-width:600px){
+  #doctors,#values,#reviews,#faq{--swipe-card-width:clamp(205px,calc(40vw + 74px),260px);--swipe-card-gap:16px}
+  #doctors .doctor-grid,#values .value-grid,#reviews .review-track,#faq-list{gap:var(--swipe-card-gap)}
+  #doctors .doctor-card{flex-basis:var(--swipe-card-width);width:var(--swipe-card-width)}
+  #values .value-grid article{flex-basis:var(--swipe-card-width)}
+  #reviews .review-card{width:var(--swipe-card-width)}
+  #faq-list{display:flex;align-items:flex-start;position:relative;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab}
+  #faq-list::-webkit-scrollbar{display:none}
+  #faq-list.is-dragging{scroll-snap-type:none;user-select:none;cursor:grabbing}
+  #faq-list:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+  #faq-list .faq-item{flex:0 0 var(--swipe-card-width);min-width:0;min-height:0;margin:0;scroll-snap-align:start}
+  #faq-list .faq-item:not([open]){display:flex;flex-direction:column;height:var(--faq-closed-height,auto)}
+  #faq-list .faq-item[open]{min-height:var(--faq-closed-height,0px)}
+  #faq-list .faq-item:not([open]) summary{display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:16px}
+  #faq-list .faq-item:not([open]) .faq-symbol{margin-top:auto}
+  #faq-list .faq-symbol img{-webkit-user-drag:none}
+}
+
+/* Doctor details follow their content instead of stretching the booking block away. */
+#doctors .doctor-card{min-height:0}
+#doctors .doctor-details{flex:0 0 auto;justify-content:flex-start;gap:16px}
+
+/* Address links keep their original typography while showing keyboard and hover feedback. */
+.contact-cards .address-map-link{color:var(--ink);font-weight:700;margin-top:0}
+.footer-contact>a.address-map-link{color:var(--ink)}
+.address-map-link:hover{text-decoration:underline;text-underline-offset:3px}
+.address-map-link:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:2px}
+
+/* In the side-by-side contacts layout, card content sets the row height. */
+@media(min-width:601px){
+  #contacts .contact-grid{height:auto;align-items:stretch}
+  #contacts .contact-cards article{flex:none;height:auto;min-height:0}
+  #contacts .contact-cards .round-clock{height:auto;min-height:0}
+  #contacts .map-card{position:relative;height:auto;min-height:0}
+  #contacts .map-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+}
+
+/* The extra price banners share the existing vaccine banner layout. */
+.price-banners{display:grid;gap:16px;margin-bottom:24px}
+.price-banners .vaccine-banner{height:auto;min-height:112px;margin:0}
+.price-banners .vaccine-banner img{flex:none}
+.price-banners .vaccine-banner div{min-width:0}
+.price-table .price-separator{padding:0 5px;color:#dadce0}
+@media(max-width:600px){
+  .price-banners{gap:12px;margin-bottom:16px}
+  .price-banners .vaccine-banner{min-height:0}
+}
+
+/* On phones the rating uses the centered layout without the dog image. */
+@media(max-width:480px){
+  .rating-card{display:block;height:auto;min-height:180px}
+  .rating-copy{height:auto;min-height:180px;align-items:center;justify-content:center;text-align:center;padding:16px}
+  .rating-card .rating-copy h2{width:100%;font-size:18px;white-space:normal}
+  .rating-copy img{width:103px;height:62px;margin-top:8px}
+  .rating-copy p{font-size:14px;margin-top:8px}
+  .rating-image{display:none}
+}

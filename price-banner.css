@@ -1,0 +1,87 @@
+/* Price table banners follow the 1024, 768, 425 and 320 px Figma variants. */
+:is(.vaccine-banner,.prices-page .catalog-banner){
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:16px;
+  height:auto;
+  min-height:112px;
+  padding:16px;
+  border-radius:12px;
+  background:var(--page);
+}
+:is(.vaccine-banner,.prices-page .catalog-banner)>img{
+  display:block;
+  flex:0 0 80px;
+  width:80px;
+  height:80px;
+  object-fit:contain;
+}
+:is(.vaccine-banner,.prices-page .catalog-banner)>div{
+  flex:1 1 0;
+  min-width:0;
+}
+:is(.vaccine-banner,.prices-page .catalog-banner) strong{
+  display:block;
+  color:var(--ink);
+  font-size:22px;
+  font-weight:700;
+  line-height:1.4;
+  overflow-wrap:break-word;
+}
+:is(.vaccine-banner,.prices-page .catalog-banner) p{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:18px;
+  font-weight:500;
+  line-height:1.4;
+  overflow-wrap:break-word;
+}
+:is(.vaccine-banner,.prices-page .catalog-banner)>.button{
+  flex:none;
+  min-height:49px;
+  margin:0;
+  padding:11px 16px;
+  font-size:18px;
+}
+
+@media(max-width:800px){
+  :is(.vaccine-banner,.prices-page .catalog-banner){min-height:104px}
+  :is(.vaccine-banner,.prices-page .catalog-banner)>img{flex-basis:72px;width:72px;height:72px}
+  :is(.vaccine-banner,.prices-page .catalog-banner) strong{font-size:20px}
+  :is(.vaccine-banner,.prices-page .catalog-banner) p{font-size:16px}
+  :is(.vaccine-banner,.prices-page .catalog-banner)>.button{min-height:44px;font-size:16px}
+}
+
+@media(max-width:600px){
+  :is(.vaccine-banner,.prices-page .catalog-banner){
+    display:grid;
+    grid-template-columns:64px minmax(0,1fr);
+    align-items:start;
+    gap:16px;
+    min-height:0;
+  }
+  :is(.vaccine-banner,.prices-page .catalog-banner)>img{width:64px;height:64px}
+  :is(.vaccine-banner,.prices-page .catalog-banner)>div{width:100%}
+  :is(.vaccine-banner,.prices-page .catalog-banner)>.button{
+    grid-column:1/-1;
+    width:100%;
+    min-height:44px;
+    margin:0;
+  }
+  :is(.vaccine-banner,.prices-page .catalog-banner).price-banner-hours{row-gap:12px}
+}
+
+@media(max-width:420px){
+  :is(.vaccine-banner,.prices-page .catalog-banner){
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+  }
+  :is(.vaccine-banner,.prices-page .catalog-banner)>img{flex:none;width:56px;height:56px}
+  :is(.vaccine-banner,.prices-page .catalog-banner)>div{flex:none}
+  :is(.vaccine-banner,.prices-page .catalog-banner) strong{font-size:18px}
+  :is(.vaccine-banner,.prices-page .catalog-banner)>.button{width:100%;font-size:14px}
+  :is(.vaccine-banner,.prices-page .catalog-banner).price-banner-healthy p{font-size:14px}
+}

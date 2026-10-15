@@ -1,0 +1,67 @@
+.therapy-page .therapy-main{display:flex;flex-direction:column;margin-top:42px}
+.therapy-breadcrumbs{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px;color:var(--muted);font-size:14px;font-weight:500;line-height:1.2;margin-bottom:32px}
+.therapy-breadcrumbs a:hover{color:var(--pink)}
+.therapy-breadcrumbs [aria-current="page"]{color:var(--ink);font-weight:700}
+.therapy-hero{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.therapy-intro,.therapy-illustration{height:510px;border-radius:24px;overflow:hidden}
+.therapy-intro{padding:24px;background:#fff;display:flex;flex-direction:column;gap:24px}
+.therapy-intro h1{margin:0;font-size:42px;font-weight:700;line-height:1.4}
+.therapy-intro p{color:var(--muted);font-size:18px;font-weight:500;line-height:1.4}
+.therapy-illustration{display:flex;align-items:center;justify-content:center;background:#ede1da;position:relative}
+.therapy-illustration::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 16% 2%,#f4e8e1 0 22%,transparent 23%),radial-gradient(ellipse at 88% 98%,#f5e8e2 0 26%,transparent 27%)}
+.therapy-illustration img{position:relative;width:min(92%,500px);height:92%;object-fit:contain}
+.therapy-appointment{grid-column:1/-1;height:72px;border-radius:12px}
+.therapy-page .prices{margin-top:100px}
+.therapy-page .doctors{margin-top:100px}
+.therapy-page .doctor-card:nth-child(n+4){display:flex}
+.therapy-page .site-footer{margin-top:100px}
+@media(max-width:1100px){
+  .therapy-page .therapy-main{margin-top:32px}
+  .therapy-intro,.therapy-illustration{height:510px}
+  .therapy-intro h1{font-size:38px}
+  .therapy-page .prices,.therapy-page .doctors,.therapy-page .site-footer{margin-top:80px}
+  .therapy-page .doctor-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .therapy-page .doctor-card{height:auto;min-height:424px}
+  .therapy-page .doctor-photo{height:182px}
+  .therapy-page .doctor-details{padding:16px}
+  .therapy-page .doctor-details h3,.therapy-page .doctor-details strong{font-size:20px}
+  .therapy-page .doctor-details p{font-size:16px}
+  .therapy-page .doctor-card:nth-child(n+5){display:none!important}
+}
+@media(max-width:800px){
+  .therapy-hero{display:flex;flex-direction:column;gap:16px}
+  .therapy-intro,.therapy-illustration{height:auto}
+  .therapy-intro{padding:24px;gap:16px}
+  .therapy-intro h1{font-size:34px}
+  .therapy-intro p{font-size:16px}
+  .therapy-illustration{height:352px}
+  .therapy-illustration img{width:304px;height:304px}
+  .therapy-page .prices,.therapy-page .doctors,.therapy-page .site-footer{margin-top:64px}
+  .therapy-page .doctor-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .therapy-page .doctor-card{height:auto;min-height:424px}
+  .therapy-page .doctor-card:nth-child(n+4){display:none!important}
+}
+@media(max-width:600px){
+  .therapy-page .therapy-main{margin-top:48px}
+  .therapy-breadcrumbs{margin-bottom:24px;font-size:12px}
+  .therapy-intro{padding:16px;gap:12px}
+  .therapy-intro h1{font-size:28px}
+  .therapy-illustration{height:272px}
+  .therapy-illustration img{width:240px;height:240px}
+  .therapy-appointment{height:62px;min-height:62px;font-size:16px}
+  .therapy-page .prices,.therapy-page .doctors,.therapy-page .site-footer{margin-top:48px}
+  .therapy-page .doctor-grid{display:grid;grid-template-columns:1fr;overflow:visible;gap:16px;cursor:auto}
+  .therapy-page .doctor-card{width:100%;height:auto;min-height:0;flex:0 1 auto}
+  .therapy-page .doctor-photo{height:230px}
+  .therapy-page .doctor-details{gap:16px}
+  .therapy-page .doctor-details p{margin-top:8px}
+  .therapy-page .doctor-details .button{margin-top:12px}
+  .therapy-page .doctor-card:nth-child(n+3){display:none!important}
+}
+@media(max-width:325px){
+  .therapy-page .therapy-main{margin-top:40px}
+  .therapy-intro h1{font-size:24px}
+  .therapy-illustration{height:272px}
+  .therapy-page .prices,.therapy-page .doctors,.therapy-page .site-footer{margin-top:40px}
+  .therapy-page .doctor-card:nth-child(3),.therapy-page .doctor-card:nth-child(4){display:flex!important}
+}

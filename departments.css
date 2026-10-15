@@ -1,0 +1,41 @@
+.departments-page .departments-main{display:flex;flex-direction:column;gap:32px;margin-top:42px}
+.departments-page .breadcrumbs{display:flex;align-items:baseline;gap:4px;color:var(--muted);font-size:14px;font-weight:500;line-height:1.2}
+.departments-page .breadcrumbs a:hover{color:var(--pink)}
+.departments-page .breadcrumbs [aria-current="page"]{color:var(--ink);font-weight:700}
+.departments-page h1{margin:0;font-size:var(--figma-responsive-font-sizes-heading-large-size,42px);font-weight:700;line-height:1.4}
+.departments-page .department-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.departments-page .department-card{display:grid;grid-template-columns:minmax(0,1fr) 258px;align-items:center;gap:12px;min-width:0;height:auto;min-height:300px;padding:24px;border-radius:24px;background:#fff;overflow:hidden}
+.departments-page .department-card>img{order:2;width:258px;height:258px;max-width:none;object-fit:cover;object-position:center}
+.departments-page .department-copy{order:1;align-self:start;display:flex;flex-direction:column;gap:16px;min-width:0}
+.departments-page .department-copy h2{font-size:var(--figma-responsive-font-sizes-heading-small-size,28px);font-weight:700;line-height:1.4}
+.departments-page .department-copy p{color:var(--muted);font-size:18px;font-weight:500;line-height:1.4}
+.departments-page .site-footer{margin-top:100px}
+@media(max-width:1100px){
+  .departments-page .departments-main{margin-top:32px}
+  .departments-page .department-grid{gap:16px}
+  .departments-page .department-card{grid-template-columns:minmax(0,1fr) 162px;height:auto;min-height:0;align-items:start}
+  .departments-page .department-card>img{width:162px;height:162px;align-self:center}
+  .departments-page .site-footer{margin-top:80px}
+}
+@media(max-width:800px){
+  .departments-page .department-card{display:flex;flex-direction:column;gap:16px;padding:24px 24px 32px}
+  .departments-page .department-card>img{order:0;align-self:flex-start;width:132px;height:132px}
+  .departments-page .department-copy{order:1;gap:16px;width:100%}
+  .departments-page .department-copy p{font-size:16px}
+  .departments-page .site-footer{margin-top:64px}
+}
+@media(max-width:600px){
+  .departments-page .site-shell{width:calc(100% - 40px);margin:20px auto}
+  .departments-page .departments-main{gap:24px;margin-top:48px}
+  .departments-page .department-grid{grid-template-columns:1fr;gap:24px}
+  .departments-page .department-card{gap:16px;padding:16px 16px 24px;border-radius:16px}
+  .departments-page .department-card>img{width:112px;height:112px}
+  .departments-page .department-copy{gap:12px}
+  .departments-page .site-footer{margin-top:48px}
+}
+@media(max-width:325px){
+  .departments-page .site-shell{width:calc(100% - 32px);margin:16px auto}
+  .departments-page .departments-main{margin-top:40px}
+  .departments-page .department-card>img{width:82px;height:82px}
+  .departments-page .site-footer{margin-top:40px}
+}

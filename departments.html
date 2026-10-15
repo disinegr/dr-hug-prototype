@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f5f3">
+  <title>Отделения клиники — Dr.Hug</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="about-menu.css">
+  <link rel="stylesheet" href="fields.css">
+  <link rel="stylesheet" href="departments.css">
+  <link rel="stylesheet" href="chat.css">
+</head>
+<body class="departments-page">
+  <div class="site-shell">
+    <header class="site-header" id="top">
+      <div class="header-top">
+        <div class="header-address"><a href="tel:+74997282888">+7 (499) 728-28-88</a></div>
+        <a class="header-location address-map-link" href="https://yandex.ru/profile/-/CXBbeXLl" target="_blank" rel="noopener noreferrer">Москва, Хорошевское шоссе, д.38Д стр.3</a>
+        <a class="header-location address-map-link" href="https://yandex.ru/maps/-/CXBbmQYQ" target="_blank" rel="noopener noreferrer">Москва, Малая Филевская, д.12 корп. 1</a>
+        <span class="max-link"><img src="assets/max.svg" alt=""> Max</span>
+      </div>
+      <div class="header-main">
+        <a class="logo" href="index.html#top" aria-label="Dr.Hug — на главную"><img class="logo-image" src="assets/logo-dr-hug.png" alt="Dr.Hug" width="648" height="180"></a>
+        <div class="search-box field field-search"><img class="field-leading" src="assets/field-search.svg" alt=""><input type="search" placeholder="Что вас интересует?" aria-label="Поиск по сайту"><button class="field-clear" type="button" aria-label="Очистить поиск" hidden><img src="assets/field-search-clear.svg" alt=""></button></div>
+        <button class="header-icon search-toggle" type="button" aria-label="Открыть поиск"><img src="assets/header-icon-1.svg" alt=""></button>
+        <a class="button button-primary header-appointment" href="tel:+74997282888">Записаться на прием</a>
+        <a class="header-icon phone-action" href="tel:+74997282888" aria-label="Записаться на приём"><img src="assets/header-icon-2.svg" alt=""></a>
+        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-controls="main-navigation" aria-expanded="false"><span class="menu-lines" aria-hidden="true"></span></button>
+      </div>
+      <nav class="nav" id="main-navigation" aria-label="Основная навигация">
+        <span class="nav-about"><button class="nav-about-trigger" type="button" aria-controls="about-submenu" aria-expanded="false">О нас <img src="assets/down.svg" alt=""></button><span class="nav-about-list" id="about-submenu"><a href="about.html">О компании</a><a href="index.html#values">Наши ценности</a><span>Документы</span><span>Лицензии</span></span></span><span class="nav-departments"><a href="departments.html" aria-current="page">Отделения клиники <img src="assets/down.svg" alt=""></a><a class="nav-therapy" href="therapy.html">Терапевтическое отделение</a></span><a href="prices.html">Цены</a><a href="specialists.html">Наши специалисты</a><a href="useful.html">Полезное</a><a href="404.html">Школа Dr.Hug</a><a href="vacancies.html">Вакансии</a><a href="index.html#contacts">Контакты</a>
+      </nav>
+    </header>
+
+    <main class="departments-main">
+      <nav class="breadcrumbs" aria-label="Навигационная цепочка"><a href="index.html">Главная</a><span aria-hidden="true">›</span><span aria-current="page">Отделения клиники</span></nav>
+      <h1>Отделения клиники</h1>
+      <div class="department-grid">
+        <a class="department-card" href="therapy.html" aria-label="Терапевтическое отделение — подробнее">
+          <img src="assets/department-therapy.png" alt="" width="1254" height="1254">
+          <div class="department-copy"><h2>Терапевтическое</h2><p>Диагностика и лечение острых и хронических заболеваний собак и кошек с индивидуальным подбором терапии.</p></div>
+        </a>
+        <article class="department-card">
+          <img src="assets/department-surgery.png" alt="" width="1254" height="1254">
+          <div class="department-copy"><h2>Хирургическое</h2><p>Современная хирургия, травматология, ортопедия и малоинвазивные операции с последующим наблюдением в стационаре.</p></div>
+        </article>
+        <article class="department-card">
+          <img src="assets/department-intensive.png" alt="" width="1086" height="1448">
+          <div class="department-copy"><h2>Интенсивной терапии (ОРИТ)</h2><p>Круглосуточное наблюдение и лечение пациентов в тяжёлом состоянии с постоянным контролем жизненных показателей.</p></div>
+        </article>
+        <article class="department-card">
+          <img src="assets/department-imaging.png" alt="" width="1254" height="1254">
+          <div class="department-copy"><h2>Визуальной диагностики</h2><p>Цифровой рентген и УЗИ для точной диагностики заболеваний и проведения исследований под контролем специалистов.</p></div>
+        </article>
+        <article class="department-card">
+          <img src="assets/department-laboratory.png" alt="" width="1254" height="1254">
+          <div class="department-copy"><h2>Лабораторной диагностики</h2><p>Широкий спектр лабораторных исследований на современном оборудовании, включая возможность срочных анализов.</p></div>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer"><div class="footer-about"><a class="logo" href="index.html#top" aria-label="Dr.Hug — на главную"><img class="logo-image" src="assets/logo-dr-hug.png" alt="Dr.Hug" width="648" height="180"></a><p>С заботой о вас и ваших питомцах.<br>Профессиональная ветеринарная помощь для здоровья и долголетия.</p><div class="footer-contact"><a href="tel:+74994600294">8 (499) 460-02-94</a><a class="address-map-link" href="https://yandex.ru/profile/-/CXBbeXLl" target="_blank" rel="noopener noreferrer"><small>Москва, Хорошевское шоссе, д.38Д стр.3</small></a><a class="address-map-link" href="https://yandex.ru/maps/-/CXBbmQYQ" target="_blank" rel="noopener noreferrer"><small>Москва, Малая Филевская, д.12 корп. 1</small></a><span class="max-link"><img src="assets/max.svg" alt=""> Max</span></div></div><nav class="footer-links" aria-label="Услуги"><div><a href="therapy.html">Терапия</a><a href="prices.html">Гастроэнтерология</a><a href="prices.html">Кастрация и Стерилизация</a><a href="prices.html">Вакцинация</a><a href="prices.html">Нефрология</a><a href="prices.html">Офтальмология</a><a href="prices.html">Хирургия</a><a href="prices.html">Эндокринология</a><a href="prices.html">Экзотология</a></div><div><a href="prices.html">Кардиология</a><a href="prices.html">Лабораторные анализы</a><a href="prices.html">Неврология</a><a href="prices.html">Стоматология</a><a href="prices.html">Стационар</a><a href="prices.html">Чипирование</a><a href="prices.html">Диетология</a><a href="prices.html">УЗИ</a></div></nav></footer>
+  </div>
+  <div class="quick-actions chat-widget-anchor" aria-label="Связаться с Dr.Hug"><button class="chat-launcher" type="button" aria-label="Открыть чат Dr.Hug" aria-controls="dr-hug-chat" aria-expanded="false" title="Чат Dr.Hug"><img src="assets/chat-assistant.svg" alt=""></button></div>
+  <script src="fields.js"></script>
+  <script src="departments.js"></script>
+  <script src="about-menu.js"></script>
+  <script src="chat.js"></script>
+</body>
+</html>
