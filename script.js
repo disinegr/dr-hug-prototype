@@ -212,7 +212,6 @@ faqSheet.innerHTML = `
     <p id="faq-sheet-answer"></p>
   </div>
   <div class="faq-sheet-help">
-    <p>Не нашли ответ? Мы на связи круглосуточно и поможем разобраться.</p>
     <button class="button button-outline" type="button" data-chat-open>Связаться с нами</button>
   </div>`;
 document.body.append(faqSheet);
