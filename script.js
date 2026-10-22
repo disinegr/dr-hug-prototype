@@ -555,7 +555,7 @@ function renderHeroTrack() {
     return slide;
   }));
   heroTrack.style.transition = 'none';
-  heroTrack.style.transform = 'translate3d(-100%,0,0)';
+  heroTrack.style.transform = 'translate3d(calc(-100% - var(--hero-slide-gap)),0,0)';
 }
 
 if (heroSlides.length > 1) {
@@ -612,7 +612,7 @@ function settleHero(direction) {
   heroTrack.style.transition = `transform ${duration}ms cubic-bezier(.22,1,.36,1)`;
   // Commit the drag position before starting the settling transition.
   void heroTrack.offsetWidth;
-  heroTrack.style.transform = `translate3d(${direction < 0 ? '0%' : direction > 0 ? '-200%' : '-100%'},0,0)`;
+  heroTrack.style.transform = `translate3d(${direction < 0 ? '0%' : direction > 0 ? 'calc(-200% - var(--hero-slide-gap) - var(--hero-slide-gap))' : 'calc(-100% - var(--hero-slide-gap))'},0,0)`;
   heroAnimation.timer = window.setTimeout(finish, duration + 80);
 }
 
@@ -648,7 +648,8 @@ heroControls.forEach((control, index) => {
 hero.addEventListener('pointerdown', event => {
   if (heroGesture || heroAnimation || heroSlides.length < 2 || event.target.closest('.hero-steps')) return;
   if (event.pointerType === 'mouse' && event.button !== 0) return;
-  heroGesture = { id: event.pointerId, x: event.clientX, y: event.clientY, lastX: event.clientX, lastTime: event.timeStamp, velocity: 0, dragging: false, vertical: false };
+  const slideStep = hero.clientWidth + parseFloat(getComputedStyle(hero).getPropertyValue('--hero-slide-gap'));
+  heroGesture = { id: event.pointerId, x: event.clientX, y: event.clientY, lastX: event.clientX, lastTime: event.timeStamp, step: slideStep, velocity: 0, dragging: false, vertical: false };
 });
 window.addEventListener('pointermove', event => {
   if (!heroGesture || event.pointerId !== heroGesture.id || heroGesture.vertical) return;
@@ -669,9 +670,9 @@ window.addEventListener('pointermove', event => {
   if (elapsed > 0) heroGesture.velocity = (event.clientX - heroGesture.lastX) / elapsed;
   heroGesture.lastX = event.clientX;
   heroGesture.lastTime = event.timeStamp;
-  const offset = Math.max(-hero.clientWidth, Math.min(hero.clientWidth, distanceX));
+  const offset = Math.max(-heroGesture.step, Math.min(heroGesture.step, distanceX));
   heroTrack.style.transition = 'none';
-  heroTrack.style.transform = `translate3d(calc(-100% + ${offset}px),0,0)`;
+  heroTrack.style.transform = `translate3d(calc(-100% - var(--hero-slide-gap) + ${offset}px),0,0)`;
 });
 function finishHeroGesture(event, canceled = false) {
   if (!heroGesture || event.pointerId !== heroGesture.id) return;

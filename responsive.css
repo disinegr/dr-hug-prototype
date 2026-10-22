@@ -14,13 +14,13 @@
 .doctor-person h3 a:hover{color:var(--pink)}
 .values-feature img{mask-image:linear-gradient(to right,transparent 0%,#000 35%)}
 .hero-picture{position:absolute;inset:0;display:block;width:100%;height:100%}
-.hero{touch-action:pan-y;cursor:grab}
+.hero{--hero-slide-gap:16px;touch-action:pan-y;cursor:grab}
 .hero.is-dragging{cursor:grabbing;user-select:none}
 .hero-picture img{display:block;width:100%;height:100%;object-fit:cover}
 .hero-picture img{-webkit-user-drag:none;user-select:none}
 .hero-slide{opacity:0;pointer-events:none;transition:opacity .65s ease}
 .hero-slide.is-active{opacity:1}
-.hero.has-track .hero-track{position:absolute;inset:0;display:flex;width:100%;height:100%;transform:translate3d(-100%,0,0);will-change:transform}
+.hero.has-track .hero-track{position:absolute;inset:0;display:flex;gap:var(--hero-slide-gap);width:100%;height:100%;transform:translate3d(calc(-100% - var(--hero-slide-gap)),0,0);will-change:transform}
 .hero.has-track .hero-track .hero-slide{position:relative;inset:auto;flex:0 0 100%;width:100%;height:100%;opacity:1;transition:none}
 .hero.is-dragging .hero-action,.hero.is-settling .hero-action{pointer-events:none}
 .hero-action{z-index:2}
@@ -30,6 +30,7 @@
 .hero-steps button::before{content:"";display:block;width:100%;height:4px;border-radius:8px;background:rgba(255,255,255,.35)}
 .hero-steps button.active::before{background:#fff}
 .hero-steps button:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:4px}
+@media(max-width:600px){.hero{--hero-slide-gap:8px}}
 .review-stars{display:none}
 .review-viewport{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x;cursor:grab}
 .review-viewport::-webkit-scrollbar{display:none}
