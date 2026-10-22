@@ -405,15 +405,56 @@ let faqDragStartX = 0;
 let faqDragStartScroll = 0;
 let faqPointerId = null;
 let faqSuppressClick = false;
+let faqTouchActive = false;
+let faqSettleTimer = 0;
+let faqScrollDirection = 0;
+let faqLastScrollLeft = faqList.scrollLeft;
+
+function settleFaqScroll() {
+  if (!mobileFaq.matches || faqPointerId !== null || faqTouchActive || !faqScrollDirection) return;
+  const current = faqList.scrollLeft;
+  const maxScroll = faqList.scrollWidth - faqList.clientWidth;
+  let target = null;
+  let shortestDistance = Infinity;
+  faqList.querySelectorAll('.faq-item').forEach(item => {
+    const position = Math.min(item.offsetLeft, maxScroll);
+    const distance = position - current;
+    if (distance * faqScrollDirection <= 1) return;
+    const allowedNudge = Math.min(96, item.offsetWidth * .4);
+    if (Math.abs(distance) <= allowedNudge && Math.abs(distance) < shortestDistance) {
+      target = position;
+      shortestDistance = Math.abs(distance);
+    }
+  });
+  if (target !== null) faqList.scrollTo({ left: target, behavior: 'smooth' });
+}
+
+function scheduleFaqSettle() {
+  clearTimeout(faqSettleTimer);
+  faqSettleTimer = window.setTimeout(settleFaqScroll, 140);
+}
+
+faqList.addEventListener('scroll', () => {
+  const position = faqList.scrollLeft;
+  if (Math.abs(position - faqLastScrollLeft) > .5) faqScrollDirection = Math.sign(position - faqLastScrollLeft);
+  faqLastScrollLeft = position;
+  scheduleFaqSettle();
+}, { passive: true });
 faqList.addEventListener('wheel', event => {
   if (!mobileFaq.matches) return;
-  const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+  if (!event.shiftKey && Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+  const movement = event.shiftKey ? event.deltaY : event.deltaX;
+  if (!movement) return;
   if ((movement < 0 && faqList.scrollLeft <= 0) ||
       (movement > 0 && faqList.scrollLeft >= faqList.scrollWidth - faqList.clientWidth - 1)) return;
   event.preventDefault();
   faqList.scrollLeft += movement;
 }, { passive: false });
 faqList.addEventListener('pointerdown', event => {
+  if (mobileFaq.matches && event.pointerType === 'touch') {
+    faqTouchActive = true;
+    return;
+  }
   if (!mobileFaq.matches || event.pointerType !== 'mouse' || event.button !== 0) return;
   faqPointerId = event.pointerId;
   faqDragStartX = event.clientX;
@@ -432,10 +473,16 @@ faqList.addEventListener('pointermove', event => {
   faqList.scrollLeft = faqDragStartScroll - distance;
 });
 const stopFaqDrag = event => {
+  if (event.pointerType === 'touch') {
+    faqTouchActive = false;
+    scheduleFaqSettle();
+    return;
+  }
   if (event.pointerId !== faqPointerId) return;
   faqPointerId = null;
   faqList.classList.remove('is-dragging');
   window.setTimeout(() => { faqSuppressClick = false; }, 0);
+  scheduleFaqSettle();
 };
 window.addEventListener('pointerup', stopFaqDrag);
 window.addEventListener('pointercancel', stopFaqDrag);
