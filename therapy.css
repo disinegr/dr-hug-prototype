@@ -61,6 +61,12 @@
 @media(max-width:425px){
   .therapy-page .doctor-grid{grid-template-columns:minmax(0,1fr)}
 }
+@media(max-width:480px){
+  .therapy-page .therapy-illustration{display:none}
+}
+@media(min-width:426px) and (max-width:480px){
+  .therapy-page .doctor-photo{height:180px}
+}
 @media(max-width:325px){
   .therapy-page .therapy-main{margin-top:40px}
   .therapy-intro h1{font-size:24px}
