@@ -3,6 +3,21 @@
   const launcher = anchor?.querySelector('.chat-launcher');
   if (!launcher) return;
 
+  const headerPhone = document.querySelector('.site-header .phone-action');
+  if (headerPhone) {
+    const chatPhone = document.createElement('button');
+    chatPhone.className = 'header-icon header-chat-phone';
+    chatPhone.type = 'button';
+    chatPhone.dataset.chatOpen = '';
+    chatPhone.setAttribute('aria-label', 'Открыть чат Dr.Hug');
+    chatPhone.setAttribute('aria-controls', 'dr-hug-chat');
+    const icon = document.createElement('img');
+    icon.src = 'assets/tabler-phone.svg';
+    icon.alt = '';
+    chatPhone.append(icon);
+    headerPhone.replaceWith(chatPhone);
+  }
+
   const phone = 'tel:+74997282888';
   anchor.classList.add('chat-widget-anchor');
   const overlay = document.createElement('div');

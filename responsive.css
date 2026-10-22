@@ -159,6 +159,7 @@
   .header-main .logo{width:162px;height:45px}
   .header-appointment{display:none}
   .phone-action{display:none}
+  .header-chat-phone{display:flex}
   .header-icon,.menu-toggle{width:44px;height:44px;padding:10px}
   main{margin-top:48px}
   .hero{width:calc(100% + 32px);height:320px;margin-left:-16px}
@@ -417,17 +418,17 @@
 .logo .logo-image{display:block;width:100%;height:100%;max-width:none;object-fit:contain;object-position:left center}
 
 @media(max-width:600px){
-  .header-main{display:grid;grid-template-columns:minmax(0,1fr) repeat(2,44px);gap:4px;align-items:center}
+  .header-main{display:grid;grid-template-columns:minmax(0,1fr) repeat(3,44px);gap:4px;align-items:center}
   .header-main .logo{min-width:0;max-width:100%;margin-right:0;overflow:hidden}
   .logo .logo-image{max-width:100%}
 }
 @media(min-width:361px) and (max-width:400px){
-  .header-main{grid-template-columns:minmax(0,1fr) repeat(2,40px)}
+  .header-main{grid-template-columns:minmax(0,1fr) repeat(3,40px)}
   .header-main .logo{width:136px;height:38px}
   .header-icon,.menu-toggle{width:40px;height:40px;padding:8px}
 }
 @media(max-width:360px){
-  .header-main{grid-template-columns:minmax(0,1fr) repeat(2,40px)}
+  .header-main{grid-template-columns:minmax(0,1fr) repeat(3,40px)}
 }
 @media(max-width:400px){
   .intro-banner{height:auto;min-height:0;padding:20px 16px;gap:8px}
