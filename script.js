@@ -406,26 +406,47 @@ let faqPointerId = null;
 let faqSuppressClick = false;
 let faqTouchActive = false;
 let faqSettleTimer = 0;
+let faqSettleFrame = 0;
 let faqScrollDirection = 0;
 let faqLastScrollLeft = faqList.scrollLeft;
+
+function stopFaqSettle() {
+  clearTimeout(faqSettleTimer);
+  cancelAnimationFrame(faqSettleFrame);
+  faqSettleFrame = 0;
+}
 
 function settleFaqScroll() {
   if (!mobileFaq.matches || faqPointerId !== null || faqTouchActive || !faqScrollDirection) return;
   const current = faqList.scrollLeft;
   const maxScroll = faqList.scrollWidth - faqList.clientWidth;
-  let target = null;
-  let shortestDistance = Infinity;
-  faqList.querySelectorAll('.faq-item').forEach(item => {
-    const position = Math.min(item.offsetLeft, maxScroll);
-    const distance = position - current;
-    if (distance * faqScrollDirection <= 1) return;
-    const allowedNudge = Math.min(96, item.offsetWidth * .4);
-    if (Math.abs(distance) <= allowedNudge && Math.abs(distance) < shortestDistance) {
-      target = position;
-      shortestDistance = Math.abs(distance);
-    }
-  });
-  if (target !== null) faqList.scrollTo({ left: target, behavior: 'smooth' });
+  const positions = [...new Set([0, ...[...faqList.querySelectorAll('.faq-item')]
+    .map(item => Math.min(item.offsetLeft, maxScroll))])];
+  if (positions.some(position => Math.abs(position - current) <= 1)) return;
+  const upperIndex = positions.findIndex(position => position > current);
+  if (upperIndex < 1) return;
+  const lower = positions[upperIndex - 1];
+  const upper = positions[upperIndex];
+  const threshold = Math.min(48, (upper - lower) * .2);
+  const target = faqScrollDirection > 0
+    ? (current - lower >= threshold ? upper : lower)
+    : (upper - current >= threshold ? lower : upper);
+  const distance = target - current;
+  if (Math.abs(distance) <= 1) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    faqList.scrollLeft = target;
+    return;
+  }
+  const duration = Math.min(520, Math.max(280, Math.abs(distance) * 1.7));
+  const started = performance.now();
+  const animate = now => {
+    const progress = Math.min(1, (now - started) / duration);
+    const eased = progress * progress * (3 - 2 * progress);
+    faqList.scrollLeft = current + distance * eased;
+    if (progress < 1) faqSettleFrame = requestAnimationFrame(animate);
+    else faqSettleFrame = 0;
+  };
+  faqSettleFrame = requestAnimationFrame(animate);
 }
 
 function scheduleFaqSettle() {
@@ -435,21 +456,27 @@ function scheduleFaqSettle() {
 
 faqList.addEventListener('scroll', () => {
   const position = faqList.scrollLeft;
-  if (Math.abs(position - faqLastScrollLeft) > .5) faqScrollDirection = Math.sign(position - faqLastScrollLeft);
+  if (!faqSettleFrame && Math.abs(position - faqLastScrollLeft) > .5) faqScrollDirection = Math.sign(position - faqLastScrollLeft);
   faqLastScrollLeft = position;
-  scheduleFaqSettle();
+  if (!faqSettleFrame) scheduleFaqSettle();
 }, { passive: true });
 faqList.addEventListener('wheel', event => {
   if (!mobileFaq.matches) return;
   if (!event.shiftKey && Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
   const movement = event.shiftKey ? event.deltaY : event.deltaX;
   if (!movement) return;
+  stopFaqSettle();
   if ((movement < 0 && faqList.scrollLeft <= 0) ||
       (movement > 0 && faqList.scrollLeft >= faqList.scrollWidth - faqList.clientWidth - 1)) return;
   event.preventDefault();
   faqList.scrollLeft += movement;
 }, { passive: false });
 faqList.addEventListener('pointerdown', event => {
+  if (mobileFaq.matches) {
+    stopFaqSettle();
+    faqScrollDirection = 0;
+    faqLastScrollLeft = faqList.scrollLeft;
+  }
   if (mobileFaq.matches && event.pointerType === 'touch') {
     faqTouchActive = true;
     return;
@@ -469,7 +496,9 @@ faqList.addEventListener('pointermove', event => {
     faqList.classList.add('is-dragging');
     faqList.setPointerCapture(event.pointerId);
   }
-  faqList.scrollLeft = faqDragStartScroll - distance;
+  const nextScrollLeft = faqDragStartScroll - distance;
+  faqScrollDirection = Math.sign(nextScrollLeft - faqList.scrollLeft) || faqScrollDirection;
+  faqList.scrollLeft = nextScrollLeft;
 });
 const stopFaqDrag = event => {
   if (event.pointerType === 'touch') {
@@ -496,6 +525,7 @@ faqList.addEventListener('click', event => {
 faqList.addEventListener('keydown', event => {
   if (!mobileFaq.matches || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return;
   event.preventDefault();
+  stopFaqSettle();
   faqList.scrollBy({ left: (event.key === 'ArrowRight' ? 1 : -1) * (faqList.clientWidth - 56), behavior: 'smooth' });
 });
 
