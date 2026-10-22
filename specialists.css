@@ -55,6 +55,13 @@
 @media(max-width:425px){
   .specialists-page .specialists-grid{grid-template-columns:minmax(0,1fr)}
 }
+@media(min-width:426px) and (max-width:600px){
+  .specialists-page .doctor-photo{height:230px}
+  .specialists-page .doctor-photo img{height:100%;top:0;object-fit:cover;object-position:center top}
+}
+@media(min-width:426px) and (max-width:480px){
+  .specialists-page .doctor-photo{height:180px}
+}
 @media(max-width:360px){
   .specialists-main h1{font-size:24px}
   .specialists-page .doctor-photo{height:200px}
