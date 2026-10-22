@@ -197,7 +197,7 @@ syncFaqKeyboardAccess();
 mobileFaq.addEventListener('change', syncFaqKeyboardAccess);
 
 faqList.innerHTML = faqs.map(([question, answer], index) => `
-  <details class="faq-item" data-faq-index="${index}" ${index === 0 && !mobileFaq.matches ? 'open' : ''}><summary><span>${question}</span><span class="faq-symbol"><img src="assets/faq-plus.svg" alt=""></span></summary><div class="faq-answer"><p>${answer}</p></div></details>
+  <details class="faq-item" data-faq-index="${index}"><summary><span>${question}</span><span class="faq-symbol"><img src="assets/faq-plus.svg" alt=""></span></summary><div class="faq-answer"><p>${answer}</p></div></details>
 `).join('');
 
 const faqSheet = document.createElement('dialog');
