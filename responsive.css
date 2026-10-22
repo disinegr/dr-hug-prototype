@@ -134,6 +134,7 @@
   .rating-copy p{font-size:16px}
   .faq-item{padding:24px;margin-bottom:24px}
   .faq-item summary{font-size:24px}
+  .faq-item p{font-size:16px}
   .contact-grid{display:grid;grid-template-columns:232px minmax(0,1fr);gap:24px;height:478px}
   .contact-cards{display:flex;gap:16px}
   .contact-cards article{height:124px;min-height:0;flex:none;padding:16px}
