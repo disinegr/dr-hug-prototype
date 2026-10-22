@@ -41,7 +41,7 @@
   .specialists-main h1{margin:24px 0;font-size:28px}
   .specialists-filters{grid-template-columns:1fr;gap:16px;margin-bottom:24px}
   .specialists-search.field-search,.specialists-specialty.field-select{height:48px}
-  .specialists-page .specialists-grid{display:grid;grid-template-columns:1fr;gap:16px;overflow:visible;touch-action:auto;cursor:auto}
+  .specialists-page .specialists-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;overflow:visible;touch-action:auto;cursor:auto}
   .specialists-page .doctor-card{display:flex!important;width:100%;min-height:0;flex:none;scroll-snap-align:none;border-radius:16px}
   .specialists-page .doctor-photo{height:242px}
   .specialists-page .doctor-photo img{height:162.49%;top:-16.09%;object-fit:fill}
@@ -51,6 +51,9 @@
   .specialists-page .doctor-details strong{font-size:20px}
   .specialists-page .doctor-details .button{min-height:46px;font-size:16px}
   .specialists-page .site-footer{margin-top:48px}
+}
+@media(max-width:425px){
+  .specialists-page .specialists-grid{grid-template-columns:minmax(0,1fr)}
 }
 @media(max-width:360px){
   .specialists-main h1{font-size:24px}
