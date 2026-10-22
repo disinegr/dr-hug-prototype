@@ -50,13 +50,16 @@
   .therapy-illustration img{width:240px;height:240px}
   .therapy-appointment{height:62px;min-height:62px;font-size:16px}
   .therapy-page .prices,.therapy-page .doctors,.therapy-page .site-footer{margin-top:48px}
-  .therapy-page .doctor-grid{display:grid;grid-template-columns:1fr;overflow:visible;gap:16px;cursor:auto}
-  .therapy-page .doctor-card{width:100%;height:auto;min-height:0;flex:0 1 auto}
+  .therapy-page .doctor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;gap:16px;cursor:auto}
+  .therapy-page #doctors .doctor-card{width:100%;height:auto;min-height:0;flex:0 1 auto}
   .therapy-page .doctor-photo{height:230px}
   .therapy-page .doctor-details{gap:16px}
   .therapy-page .doctor-details p{margin-top:8px}
   .therapy-page .doctor-details .button{margin-top:12px}
   .therapy-page .doctor-card:nth-child(n+3){display:none!important}
+}
+@media(max-width:425px){
+  .therapy-page .doctor-grid{grid-template-columns:minmax(0,1fr)}
 }
 @media(max-width:325px){
   .therapy-page .therapy-main{margin-top:40px}
