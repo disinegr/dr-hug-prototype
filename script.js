@@ -1,3 +1,109 @@
+function createSoftSnapScroller(container, itemSelector, isEnabled) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let settleTimer = 0;
+  let settleFrame = 0;
+  let direction = 0;
+  let lastScrollLeft = container.scrollLeft;
+  let activePointer = null;
+  let activeTouch = false;
+
+  function stop() {
+    clearTimeout(settleTimer);
+    cancelAnimationFrame(settleFrame);
+    settleFrame = 0;
+  }
+
+  function settle() {
+    if (!isEnabled() || activePointer !== null || activeTouch || !direction) return;
+    const current = container.scrollLeft;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    if (maxScroll <= 1) return;
+    const containerLeft = container.getBoundingClientRect().left;
+    const positions = [...new Set([0, ...[...container.querySelectorAll(itemSelector)]
+      .map(item => Math.min(item.getBoundingClientRect().left - containerLeft + current, maxScroll))])]
+      .sort((a, b) => a - b);
+    if (positions.some(position => Math.abs(position - current) <= 1)) return;
+    const upperIndex = positions.findIndex(position => position > current);
+    if (upperIndex < 1) return;
+    const lower = positions[upperIndex - 1];
+    const upper = positions[upperIndex];
+    const threshold = Math.min(48, (upper - lower) * .2);
+    const target = direction > 0
+      ? (current - lower >= threshold ? upper : lower)
+      : (upper - current >= threshold ? lower : upper);
+    const distance = target - current;
+    if (Math.abs(distance) <= 1) return;
+    if (reducedMotion.matches) {
+      container.scrollLeft = target;
+      return;
+    }
+    const duration = Math.min(520, Math.max(280, Math.abs(distance) * 1.7));
+    const started = performance.now();
+    const animate = now => {
+      const progress = Math.min(1, (now - started) / duration);
+      const eased = progress * progress * (3 - 2 * progress);
+      container.scrollLeft = current + distance * eased;
+      if (progress < 1) settleFrame = requestAnimationFrame(animate);
+      else settleFrame = 0;
+    };
+    settleFrame = requestAnimationFrame(animate);
+  }
+
+  function schedule() {
+    clearTimeout(settleTimer);
+    settleTimer = window.setTimeout(settle, 140);
+  }
+
+  container.addEventListener('scroll', () => {
+    const position = container.scrollLeft;
+    if (!settleFrame && Math.abs(position - lastScrollLeft) > .5) direction = Math.sign(position - lastScrollLeft);
+    lastScrollLeft = position;
+    if (!settleFrame) schedule();
+  }, { passive: true });
+  container.addEventListener('wheel', event => {
+    if (!isEnabled()) return;
+    if (!event.shiftKey && Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+    const movement = event.shiftKey ? event.deltaY : event.deltaX;
+    if (!movement) return;
+    stop();
+    if ((movement < 0 && container.scrollLeft <= 0) ||
+        (movement > 0 && container.scrollLeft >= container.scrollWidth - container.clientWidth - 1)) return;
+    event.preventDefault();
+    direction = Math.sign(movement);
+    container.scrollLeft += movement;
+    schedule();
+  }, { passive: false });
+  container.addEventListener('pointerdown', event => {
+    if (!isEnabled()) return;
+    stop();
+    activePointer = event.pointerId;
+    direction = 0;
+    lastScrollLeft = container.scrollLeft;
+  });
+  container.addEventListener('touchstart', () => {
+    if (!isEnabled()) return;
+    stop();
+    activeTouch = true;
+  }, { passive: true });
+  const releaseTouch = () => {
+    activeTouch = false;
+    schedule();
+  };
+  container.addEventListener('touchend', releaseTouch, { passive: true });
+  container.addEventListener('touchcancel', releaseTouch, { passive: true });
+  const releasePointer = event => {
+    if (event.pointerId !== activePointer) return;
+    activePointer = null;
+    schedule();
+  };
+  window.addEventListener('pointerup', releasePointer);
+  window.addEventListener('pointercancel', releasePointer);
+  window.addEventListener('resize', () => {
+    if (!isEnabled()) { stop(); direction = 0; }
+  });
+  return { stop };
+}
+
 const doctorGrid = document.querySelector('#doctor-grid');
 doctorGrid.innerHTML = Array.from({ length: 6 }, () => `
   <article class="doctor-card"><div class="doctor-photo"><a class="doctor-profile-link" href="doctor.html" aria-label="Подробнее о враче Кулешове Алексее"></a><img src="assets/doctor.png" alt="Кулешов Алексей"></div><div class="doctor-details"><div class="doctor-person"><h3><a href="doctor.html">Кулешов Алексей</a></h3><p>Вед. гастроэнтеролог,<br>научный руководитель</p></div><div class="doctor-booking"><strong>Прием 2 200 ₽</strong><a class="button button-outline" href="tel:+74994600294">Записаться</a></div></div></article>
@@ -12,19 +118,11 @@ const reviewViewport = reviewTrack.parentElement;
 reviewViewport.tabIndex = 0;
 reviewViewport.setAttribute('role', 'region');
 reviewViewport.setAttribute('aria-label', 'Отзывы — прокрутка по горизонтали');
+const reviewSnap = createSoftSnapScroller(reviewViewport, '.review-card', () => true);
 let reviewDragStartX = 0;
 let reviewDragStartScroll = 0;
 let reviewDragging = false;
 let suppressReviewClick = false;
-
-reviewViewport.addEventListener('wheel', event => {
-  const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-  const next = reviewViewport.scrollLeft + movement;
-  if ((movement < 0 && reviewViewport.scrollLeft <= 0) ||
-      (movement > 0 && reviewViewport.scrollLeft >= reviewViewport.scrollWidth - reviewViewport.clientWidth - 1)) return;
-  event.preventDefault();
-  reviewViewport.scrollLeft = next;
-}, { passive: false });
 
 reviewViewport.addEventListener('pointerdown', event => {
   if (event.pointerType !== 'mouse' || event.button !== 0) return;
@@ -60,10 +158,12 @@ reviewViewport.addEventListener('click', event => {
 reviewViewport.addEventListener('keydown', event => {
   if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
   event.preventDefault();
+  reviewSnap.stop();
   reviewViewport.scrollBy({ left: (event.key === 'ArrowRight' ? 1 : -1) * 180, behavior: 'smooth' });
 });
 
 const mobileDoctors = window.matchMedia('(max-width: 600px)');
+const doctorSnap = createSoftSnapScroller(doctorGrid, '.doctor-card', () => mobileDoctors.matches);
 doctorGrid.setAttribute('role', 'region');
 doctorGrid.setAttribute('aria-label', 'Врачи — прокрутка по горизонтали');
 function syncDoctorKeyboardAccess() {
@@ -77,14 +177,6 @@ let doctorDragStartX = 0;
 let doctorDragStartScroll = 0;
 let doctorDragging = false;
 let suppressDoctorClick = false;
-doctorGrid.addEventListener('wheel', event => {
-  if (!mobileDoctors.matches) return;
-  const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-  if ((movement < 0 && doctorGrid.scrollLeft <= 0) ||
-      (movement > 0 && doctorGrid.scrollLeft >= doctorGrid.scrollWidth - doctorGrid.clientWidth - 1)) return;
-  event.preventDefault();
-  doctorGrid.scrollLeft += movement;
-}, { passive: false });
 doctorGrid.addEventListener('pointerdown', event => {
   if (!mobileDoctors.matches || event.pointerType !== 'mouse' || event.button !== 0) return;
   doctorDragStartX = event.clientX;
@@ -119,25 +211,17 @@ doctorGrid.addEventListener('click', event => {
 doctorGrid.addEventListener('keydown', event => {
   if (!mobileDoctors.matches || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return;
   event.preventDefault();
+  doctorSnap.stop();
   doctorGrid.scrollBy({ left: (event.key === 'ArrowRight' ? 1 : -1) * 232, behavior: 'smooth' });
 });
 
 const valueGrid = document.querySelector('.value-grid');
 const scrollableValues = window.matchMedia('(max-width: 768px)');
+const valueSnap = createSoftSnapScroller(valueGrid, 'article', () => scrollableValues.matches);
 let valueDragStartX = 0;
 let valueDragStartScroll = 0;
 let valueDragging = false;
 let valuePointerId = null;
-
-valueGrid.addEventListener('wheel', event => {
-  if (!scrollableValues.matches) return;
-  const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-  const next = valueGrid.scrollLeft + movement;
-  if ((movement < 0 && valueGrid.scrollLeft <= 0) ||
-      (movement > 0 && valueGrid.scrollLeft >= valueGrid.scrollWidth - valueGrid.clientWidth - 1)) return;
-  event.preventDefault();
-  valueGrid.scrollLeft = next;
-}, { passive: false });
 
 valueGrid.addEventListener('pointerdown', event => {
   if (!scrollableValues.matches || event.pointerType !== 'mouse' || event.button !== 0) return;
@@ -169,6 +253,7 @@ valueGrid.addEventListener('dragstart', event => event.preventDefault());
 valueGrid.addEventListener('keydown', event => {
   if (!scrollableValues.matches || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return;
   event.preventDefault();
+  valueSnap.stop();
   valueGrid.scrollBy({ left: (event.key === 'ArrowRight' ? 1 : -1) * 280, behavior: 'smooth' });
 });
 
@@ -404,83 +489,8 @@ let faqDragStartX = 0;
 let faqDragStartScroll = 0;
 let faqPointerId = null;
 let faqSuppressClick = false;
-let faqTouchActive = false;
-let faqSettleTimer = 0;
-let faqSettleFrame = 0;
-let faqScrollDirection = 0;
-let faqLastScrollLeft = faqList.scrollLeft;
-
-function stopFaqSettle() {
-  clearTimeout(faqSettleTimer);
-  cancelAnimationFrame(faqSettleFrame);
-  faqSettleFrame = 0;
-}
-
-function settleFaqScroll() {
-  if (!mobileFaq.matches || faqPointerId !== null || faqTouchActive || !faqScrollDirection) return;
-  const current = faqList.scrollLeft;
-  const maxScroll = faqList.scrollWidth - faqList.clientWidth;
-  const positions = [...new Set([0, ...[...faqList.querySelectorAll('.faq-item')]
-    .map(item => Math.min(item.offsetLeft, maxScroll))])];
-  if (positions.some(position => Math.abs(position - current) <= 1)) return;
-  const upperIndex = positions.findIndex(position => position > current);
-  if (upperIndex < 1) return;
-  const lower = positions[upperIndex - 1];
-  const upper = positions[upperIndex];
-  const threshold = Math.min(48, (upper - lower) * .2);
-  const target = faqScrollDirection > 0
-    ? (current - lower >= threshold ? upper : lower)
-    : (upper - current >= threshold ? lower : upper);
-  const distance = target - current;
-  if (Math.abs(distance) <= 1) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    faqList.scrollLeft = target;
-    return;
-  }
-  const duration = Math.min(520, Math.max(280, Math.abs(distance) * 1.7));
-  const started = performance.now();
-  const animate = now => {
-    const progress = Math.min(1, (now - started) / duration);
-    const eased = progress * progress * (3 - 2 * progress);
-    faqList.scrollLeft = current + distance * eased;
-    if (progress < 1) faqSettleFrame = requestAnimationFrame(animate);
-    else faqSettleFrame = 0;
-  };
-  faqSettleFrame = requestAnimationFrame(animate);
-}
-
-function scheduleFaqSettle() {
-  clearTimeout(faqSettleTimer);
-  faqSettleTimer = window.setTimeout(settleFaqScroll, 140);
-}
-
-faqList.addEventListener('scroll', () => {
-  const position = faqList.scrollLeft;
-  if (!faqSettleFrame && Math.abs(position - faqLastScrollLeft) > .5) faqScrollDirection = Math.sign(position - faqLastScrollLeft);
-  faqLastScrollLeft = position;
-  if (!faqSettleFrame) scheduleFaqSettle();
-}, { passive: true });
-faqList.addEventListener('wheel', event => {
-  if (!mobileFaq.matches) return;
-  if (!event.shiftKey && Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
-  const movement = event.shiftKey ? event.deltaY : event.deltaX;
-  if (!movement) return;
-  stopFaqSettle();
-  if ((movement < 0 && faqList.scrollLeft <= 0) ||
-      (movement > 0 && faqList.scrollLeft >= faqList.scrollWidth - faqList.clientWidth - 1)) return;
-  event.preventDefault();
-  faqList.scrollLeft += movement;
-}, { passive: false });
+const faqSnap = createSoftSnapScroller(faqList, '.faq-item', () => mobileFaq.matches);
 faqList.addEventListener('pointerdown', event => {
-  if (mobileFaq.matches) {
-    stopFaqSettle();
-    faqScrollDirection = 0;
-    faqLastScrollLeft = faqList.scrollLeft;
-  }
-  if (mobileFaq.matches && event.pointerType === 'touch') {
-    faqTouchActive = true;
-    return;
-  }
   if (!mobileFaq.matches || event.pointerType !== 'mouse' || event.button !== 0) return;
   faqPointerId = event.pointerId;
   faqDragStartX = event.clientX;
@@ -496,21 +506,13 @@ faqList.addEventListener('pointermove', event => {
     faqList.classList.add('is-dragging');
     faqList.setPointerCapture(event.pointerId);
   }
-  const nextScrollLeft = faqDragStartScroll - distance;
-  faqScrollDirection = Math.sign(nextScrollLeft - faqList.scrollLeft) || faqScrollDirection;
-  faqList.scrollLeft = nextScrollLeft;
+  faqList.scrollLeft = faqDragStartScroll - distance;
 });
 const stopFaqDrag = event => {
-  if (event.pointerType === 'touch') {
-    faqTouchActive = false;
-    scheduleFaqSettle();
-    return;
-  }
   if (event.pointerId !== faqPointerId) return;
   faqPointerId = null;
   faqList.classList.remove('is-dragging');
   window.setTimeout(() => { faqSuppressClick = false; }, 0);
-  scheduleFaqSettle();
 };
 window.addEventListener('pointerup', stopFaqDrag);
 window.addEventListener('pointercancel', stopFaqDrag);
@@ -525,7 +527,7 @@ faqList.addEventListener('click', event => {
 faqList.addEventListener('keydown', event => {
   if (!mobileFaq.matches || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return;
   event.preventDefault();
-  stopFaqSettle();
+  faqSnap.stop();
   faqList.scrollBy({ left: (event.key === 'ArrowRight' ? 1 : -1) * (faqList.clientWidth - 56), behavior: 'smooth' });
 });
 
