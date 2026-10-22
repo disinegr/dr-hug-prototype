@@ -18,6 +18,44 @@ saleDialog.innerHTML = `
   </div>`;
 document.body.append(saleDialog);
 
+const saleDialogTitle = saleDialog.querySelector('#sale-dialog-title');
+const saleDialogDescription = saleDialog.querySelector('.sale-dialog-intro p');
+const saleDialogConditionsTitle = saleDialog.querySelector('.sale-dialog-details h3');
+const saleDialogConditions = saleDialog.querySelector('.sale-dialog-details ul');
+const saleDialogPrice = saleDialog.querySelector('.sale-dialog-price strong');
+const defaultSaleContent = {
+  title: saleDialogTitle.textContent,
+  description: saleDialogDescription.textContent,
+  conditionsTitle: saleDialogConditionsTitle.textContent,
+  conditions: [...saleDialogConditions.children].map(item => item.textContent),
+  price: saleDialogPrice.textContent
+};
+const saleContentByType = {
+  diagnostics: {
+    title: 'Рентгенография грудной клетки по акции',
+    description: 'Скидка на исследование в двух проекциях для кошек и собак.',
+    conditionsTitle: 'Условия акции',
+    conditions: [
+      'Акционная цена действует с понедельника по пятницу с 11:00 до 16:00.',
+      'Необходима предварительная запись.'
+    ],
+    price: '4 800 ₽'
+  }
+};
+
+function setSaleDialogContent(trigger) {
+  const content = saleContentByType[trigger.dataset.sale] || defaultSaleContent;
+  saleDialogTitle.textContent = content.title;
+  saleDialogDescription.textContent = content.description;
+  saleDialogConditionsTitle.textContent = content.conditionsTitle;
+  saleDialogConditions.replaceChildren(...content.conditions.map(condition => {
+    const item = document.createElement('li');
+    item.textContent = condition;
+    return item;
+  }));
+  saleDialogPrice.textContent = content.price;
+}
+
 let saleDialogTrigger = null;
 const saleSheetMedia = window.matchMedia('(max-width:600px)');
 const saleReducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)');
@@ -42,6 +80,7 @@ document.addEventListener('click', event => {
   const trigger = event.target.closest('button.sale-tag');
   if (!trigger) return;
   saleDialogTrigger = trigger;
+  setSaleDialogContent(trigger);
   saleDialog.showModal();
   if (saleSheetMedia.matches) {
     void saleDialog.offsetWidth;
