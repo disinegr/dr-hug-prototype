@@ -1,10 +1,11 @@
 const doctorGrid = document.querySelector('#doctor-grid');
-doctorGrid.innerHTML = Array.from({length: 6}, () => `
+if (doctorGrid) doctorGrid.innerHTML = Array.from({length: 6}, () => `
   <article class="doctor-card"><div class="doctor-photo"><a class="doctor-profile-link" href="doctor.html" aria-label="Подробнее о враче Кулешове Алексее"></a><img src="assets/doctor.png" alt="Кулешов Алексей"></div><div class="doctor-details"><div class="doctor-person"><h3><a href="doctor.html">Кулешов Алексей</a></h3><p>Вед. гастроэнтеролог,<br>научный руководитель</p></div><div class="doctor-booking"><strong>Прием 2 200 ₽</strong><a class="button button-outline" href="tel:+74994600294">Записаться</a></div></div></article>
 `).join('');
 
 const firstPriceContent = document.querySelector('#price-content');
 [...document.querySelectorAll('.price-card.collapsed')].filter(card => !card.querySelector('.accordion-content')).forEach((card, index) => {
+  if (!firstPriceContent) return;
   const content = document.createElement('div');
   content.className = 'accordion-content';
   content.id = `therapy-price-content-${index + 1}`;

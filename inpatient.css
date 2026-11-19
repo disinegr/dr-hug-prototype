@@ -1,0 +1,265 @@
+.inpatient-page .inpatient-hero{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.inpatient-page .therapy-intro,.inpatient-page .therapy-illustration{height:auto;min-height:610px}
+.inpatient-page .therapy-intro{gap:16px;padding:28px}
+.inpatient-page .therapy-intro h1{line-height:1.2;margin-bottom:8px}
+.inpatient-page .therapy-intro p{font-size:16px;line-height:1.45}
+.inpatient-page .therapy-illustration img{width:min(90%,510px);height:auto;max-height:90%;object-fit:contain}
+.inpatient-hero-actions{grid-column:1/-1;display:grid;gap:16px}
+.inpatient-hero-actions .button{width:100%;height:64px}
+.inpatient-page .inpatient-section{margin-top:96px;min-width:0}
+.inpatient-page .inpatient-section .section-head{margin-bottom:28px}
+.inpatient-section-intro{max-width:850px;margin-bottom:28px}
+.inpatient-section-intro p{color:var(--muted);margin-top:14px}
+.inpatient-benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.inpatient-benefits article{min-width:0;min-height:368px;padding:24px;border-radius:24px;background:#fff}
+.inpatient-benefit-art{flex:none;width:82px;height:82px;margin-bottom:16px}
+.inpatient-benefit-art img{display:block;width:100%;height:100%;object-fit:contain}
+.inpatient-benefits h3{font-size:var(--figma-responsive-font-sizes-title-size);line-height:1.4;min-height:2.8em}
+.inpatient-benefits p{font-size:18px;line-height:1.4;color:var(--muted);margin-top:12px}
+.inpatient-reasons{display:block}
+.inpatient-reasons .inpatient-section-intro{margin-bottom:28px}
+.inpatient-reason-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.inpatient-reason-grid li{display:flex;flex-direction:column;align-items:flex-start;min-width:0;min-height:228px;padding:24px;background:#fff;border-radius:24px;font-size:var(--figma-responsive-font-sizes-title-size);font-weight:700;line-height:1.4}
+.inpatient-reason-grid img{display:block;flex:none;width:82px;height:82px;object-fit:contain;margin-bottom:16px}
+.inpatient-reason-grid span{min-width:0}
+.inpatient-check-list li::before{content:'✓';display:grid;place-items:center;flex:none;width:23px;height:23px;border:2px solid var(--pink);border-radius:50%;color:var(--pink);font-size:14px;font-weight:700;line-height:1}
+.inpatient-care{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,700px) minmax(0,1fr);gap:16px;align-items:stretch;min-height:342px;padding:24px;overflow:hidden;border-radius:24px;background:linear-gradient(105deg,var(--pink) 0%,#f87080 62%,#ff94a0 100%);color:#fff}
+.inpatient-care-pattern{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.2;pointer-events:none}
+.inpatient-care-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:24px;min-width:0}
+.inpatient-care-copy{display:grid;gap:16px;min-width:0}
+.inpatient-care h2{color:#fff;font-size:28px;line-height:1.4}
+.inpatient-care p{color:#fff;font-size:18px;line-height:1.4}
+.inpatient-care .button{flex:none;min-height:49px}
+.inpatient-care-media{position:relative;z-index:1;min-width:0;align-self:stretch}
+.inpatient-care-media picture{position:absolute;inset:0;display:block;width:100%;height:100%}
+.inpatient-care-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.inpatient-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.inpatient-category{min-width:0;display:flex;flex-direction:column;overflow:hidden;border-radius:24px;background:#fff}
+.inpatient-category-media{position:relative;display:grid;place-items:center;flex:none;height:340px;padding:24px 28px;box-sizing:border-box;overflow:hidden;background:linear-gradient(180deg,#cbd3cc 0%,#e6ebe6 100%)}
+.inpatient-category:nth-child(2) .inpatient-category-media{background:linear-gradient(180deg,#f0c77b 0%,#f8e5c5 100%)}
+.inpatient-category:nth-child(3) .inpatient-category-media{background:linear-gradient(180deg,#5aa4ff 0%,#c9e1ff 100%)}
+.inpatient-category:nth-child(4) .inpatient-category-media{background:linear-gradient(180deg,#fc8f9e 0%,#ffdae0 100%)}
+.inpatient-category-media::after{content:'';position:absolute;z-index:0;left:-15%;bottom:-40px;width:130%;height:118px;border-radius:50% 50% 0 0;background:#fff}
+.inpatient-category-art{position:relative;z-index:1;display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:contain}
+.inpatient-category-media picture{position:relative;z-index:1;display:block;width:100%;height:100%;min-width:0;min-height:0}
+.inpatient-category-body{display:flex;flex:1;flex-direction:column;align-items:flex-start;padding:0 28px 30px}
+.inpatient-category-badge{display:inline-block;max-width:100%;padding:7px 11px;border-radius:999px;background:var(--figma-semantic-surface-accent-subtle);color:var(--pink);font-size:14px;font-weight:700;line-height:1.3}
+.inpatient-category h3{margin-top:14px;color:var(--ink);font-size:24px;line-height:1.25}
+.inpatient-category-body>p{margin-top:16px;color:var(--muted);font-size:18px;line-height:1.4}
+.inpatient-category ul{display:grid;align-content:start;gap:12px;margin:22px 0 0;padding:0;list-style:none}
+.inpatient-category li{display:flex;align-items:flex-start;gap:11px;min-width:0;color:var(--muted);font-size:18px;line-height:1.4}
+.inpatient-category li::before{content:'';flex:none;width:7px;height:7px;margin-top:.53em;border-radius:50%;background:var(--pink)}
+.inpatient-section-symbol{display:grid;place-items:center;width:52px;height:52px;margin-bottom:20px;border-radius:16px;background:var(--figma-semantic-surface-accent-subtle);color:var(--pink);font-size:26px;font-weight:700}
+.inpatient-check-list{display:grid;align-content:start;gap:16px;margin:0;padding:0;list-style:none}
+.inpatient-check-list li{display:flex;gap:12px;align-items:flex-start;color:var(--muted)}
+.inpatient-cost-card .inpatient-check-list li::before{display:none}
+.inpatient-tabler-check{display:block;flex:none;width:24px;height:24px;color:var(--figma-semantic-accent-primary)}
+.inpatient-cost-info{display:grid;place-items:center;flex:none;width:24px;height:24px;margin-left:-6px;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer}
+.inpatient-cost-info img{width:20px;height:20px}
+.inpatient-cost-info-label{display:none}
+.inpatient-cost-info:hover{background:var(--figma-semantic-surface-accent-subtle)}
+.inpatient-cost-info:focus-visible,.inpatient-drugs-dialog button:focus-visible{outline:2px solid var(--figma-semantic-accent-primary);outline-offset:3px}
+.inpatient-cost-grid{display:grid;grid-auto-rows:1fr;gap:20px}
+.inpatient-cost-card{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px;align-items:stretch;min-width:0;overflow:hidden;border-radius:24px;background:#fff}
+.inpatient-cost-content{display:flex;flex-direction:column;justify-content:center;min-width:0;position:relative;z-index:1;padding:24px}
+.inpatient-cost-card:nth-child(2) .inpatient-cost-content{justify-content:flex-start}
+.inpatient-cost-card h3{font-size:26px;line-height:1.3;margin-bottom:16px}
+.inpatient-cost-card .inpatient-check-list{margin-bottom:32px}
+.inpatient-cost-card:nth-child(2) .inpatient-check-list{margin-bottom:0}
+.inpatient-cost-cta{align-self:flex-start;min-width:200px;border:0}
+.inpatient-cost-media{position:relative;min-width:0;min-height:410px;align-self:stretch}
+.inpatient-cost-media img{position:absolute;right:0;bottom:0;display:block;width:140%;max-width:none;height:auto;object-fit:contain;object-position:right bottom}
+.inpatient-cost-card:nth-child(2) .inpatient-cost-media img{width:130%}
+html.inpatient-drugs-open{overflow:hidden}
+.inpatient-price-disclaimer{display:flex;align-items:center;gap:16px;margin-top:20px;padding:16px;border-radius:12px;background:#fff;color:var(--pink);font-size:18px;font-weight:700;line-height:1.4}
+.inpatient-price-disclaimer img{display:block;flex:none;width:62px;height:62px;object-fit:contain}
+.inpatient-feature-banner{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);gap:16px;min-width:0;overflow:hidden;padding:24px;border-radius:24px;color:#fff}
+.inpatient-feature-pattern{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.inpatient-feature-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:24px;min-width:0}
+.inpatient-feature-copy{display:grid;gap:16px;max-width:620px}
+.inpatient-feature-banner h2{font-size:28px;line-height:1.4}
+.inpatient-feature-banner p{font-size:18px;line-height:1.4}
+.inpatient-feature-media{position:relative;z-index:1;min-width:0;align-self:stretch}
+.inpatient-feature-media img{position:absolute;right:-24px;bottom:-24px;display:block;width:calc(100% + 24px);max-width:none;max-height:calc(100% + 24px);object-fit:contain;object-position:right bottom}
+.inpatient-rehab{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);min-height:364px;background:radial-gradient(ellipse 85% 120% at 100% 50%,#c4d1eb 0%,#a2acc2 50%,#808899 100%)}
+.inpatient-rehab .inpatient-feature-pattern{opacity:.4}
+.inpatient-rehab-content{justify-content:flex-start}
+.inpatient-rehab .inpatient-feature-copy{gap:16px}
+.inpatient-rehab .inpatient-feature-copy p{color:#dadce0}
+.inpatient-rehab .inpatient-check-list{gap:12px}
+.inpatient-rehab .inpatient-check-list li{gap:16px;color:#fff;font-size:18px;line-height:1.4}
+.inpatient-rehab .inpatient-check-list li::before{display:none}
+.inpatient-rehab .inpatient-check-list img{display:block;flex:none;width:24px;height:24px}
+.inpatient-rehab .inpatient-feature-media img{right:-24px;bottom:-24px;width:auto;height:calc(100% + 48px);max-height:none;object-position:right bottom}
+@media(min-width:1440px){.inpatient-rehab .inpatient-feature-media img{right:50%;bottom:-24px;width:auto;height:calc(100% + 6px);max-width:100%;max-height:none;object-position:center bottom;transform:translateX(50%)}}
+.inpatient-updates{min-height:413px;background:linear-gradient(105deg,#f04b60 0%,#f87080 60%,#ff94a0 100%)}
+.inpatient-updates .inpatient-feature-pattern{opacity:.2}
+.inpatient-updates-note{width:100%;padding:16px;border-radius:16px;background:#fff;color:var(--ink)}
+.inpatient-final-cta{min-height:389px;background:linear-gradient(105deg,#4696ff 0%,#63a6ff 55%,#80b7ff 100%)}
+.inpatient-final-cta .inpatient-feature-pattern{opacity:.4}
+.inpatient-final-cta .button{flex:none;border:0;background:#fff;color:var(--ink)}
+@media(min-width:769px) and (max-width:1024px){
+  .inpatient-final-cta .inpatient-feature-media img{right:-90px;bottom:-24px;width:auto;height:calc(100% + 48px);max-height:none;object-position:center bottom}
+}
+@media(max-width:1024px){
+  .inpatient-cost-grid{grid-auto-rows:auto}
+  .inpatient-cost-card{display:flex;flex-direction:column;min-height:0}
+  .inpatient-cost-content{flex:none;justify-content:flex-start}
+  .inpatient-cost-card .inpatient-check-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 32px}
+  .inpatient-cost-card:first-child .inpatient-check-list li:nth-child(1){grid-column:2;grid-row:1}
+  .inpatient-cost-card:first-child .inpatient-check-list li:nth-child(2){grid-column:1;grid-row:1}
+  .inpatient-cost-card:first-child .inpatient-check-list li:nth-child(3){grid-column:1;grid-row:2}
+  .inpatient-cost-card:first-child .inpatient-check-list li:nth-child(4){grid-column:2;grid-row:2}
+  .inpatient-cost-card:first-child .inpatient-check-list li:nth-child(5){grid-column:2;grid-row:3}
+  .inpatient-cost-card:first-child .inpatient-check-list li:nth-child(6){grid-column:2;grid-row:4}
+  .inpatient-cost-card:nth-child(2) .inpatient-check-list li:nth-child(1){grid-column:1;grid-row:1}
+  .inpatient-cost-card:nth-child(2) .inpatient-check-list li:nth-child(2){grid-column:1;grid-row:2}
+  .inpatient-cost-card:nth-child(2) .inpatient-check-list li:nth-child(3){grid-column:2;grid-row:1}
+  .inpatient-cost-card:nth-child(2) .inpatient-check-list li:nth-child(4){grid-column:1;grid-row:3}
+  .inpatient-cost-card:nth-child(2) .inpatient-check-list li:nth-child(5){grid-column:2;grid-row:2}
+  .inpatient-cost-media{--inpatient-cost-art-top:-40px;flex:none;height:clamp(260px,47vw,420px);min-height:0;overflow:hidden}
+  .inpatient-cost-media img,.inpatient-cost-card:nth-child(2) .inpatient-cost-media img{top:var(--inpatient-cost-art-top);right:auto;bottom:auto;left:50%;width:min(100%,800px);height:auto;transform:translateX(-50%)}
+  .inpatient-updates .inpatient-feature-media img{top:5px;right:50%;bottom:auto;width:auto;height:100%;max-width:100%;max-height:none;object-position:center;transform:translateX(50%)}
+}
+@media(max-width:1100px){
+  .inpatient-page .inpatient-section{margin-top:80px}
+  .inpatient-care{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+  .inpatient-benefits{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .inpatient-benefits article{min-height:360px}
+  .inpatient-benefits p{font-size:16px}
+  .inpatient-page .therapy-intro,.inpatient-page .therapy-illustration{min-height:0}
+  .inpatient-page .therapy-intro{padding:24px}
+  .inpatient-page .therapy-intro p{font-size:15px}
+  .inpatient-reason-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:1024px){
+  .inpatient-category-grid{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .inpatient-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .inpatient-care{grid-template-columns:1fr;gap:0}
+  .inpatient-care-media{width:min(100%,480px);min-height:300px;justify-self:center}
+}
+@media(max-width:800px){
+  .inpatient-page .therapy-hero{display:grid;grid-template-columns:1fr}
+  .inpatient-page .therapy-intro,.inpatient-page .therapy-illustration{min-height:0}
+  .inpatient-page .therapy-illustration{height:400px}
+  .inpatient-page .therapy-illustration img{width:350px;height:350px;max-height:none}
+  .inpatient-hero-actions{grid-column:1}
+  .inpatient-reason-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .inpatient-page .inpatient-section{margin-top:64px}
+}
+@media(max-width:600px){
+  .inpatient-page .therapy-intro{padding:20px}
+  .inpatient-page .therapy-intro p{font-size:16px}
+  .inpatient-page .therapy-illustration{height:320px}
+  .inpatient-page .therapy-illustration img{width:290px;height:290px}
+  .inpatient-hero-actions .button{height:58px;font-size:16px}
+  .inpatient-page .inpatient-section{margin-top:48px}
+  .inpatient-benefits{gap:12px}
+  .inpatient-benefits article{min-height:0;padding:16px}
+  .inpatient-reason-grid{gap:10px}
+  .inpatient-reason-grid li{min-height:206px;padding:16px}
+  .inpatient-care,.inpatient-rehab{padding:20px}
+  .inpatient-rehab h2{font-size:24px}
+  .inpatient-care h2{font-size:24px}
+  .inpatient-care p{font-size:16px}
+  .inpatient-category-media{height:320px}
+  .inpatient-category-media{padding:20px}
+  .inpatient-category-body{padding:0 20px 24px}
+  .inpatient-category h3{font-size:20px}
+  .inpatient-category-body>p,.inpatient-category li{font-size:16px}
+  .inpatient-cost-content{padding:20px}
+  .inpatient-cost-card h3{font-size:23px}
+  .inpatient-cost-media{height:auto;min-height:0;overflow:hidden}
+  .inpatient-cost-media picture{display:block}
+  .inpatient-cost-media img,.inpatient-cost-card:nth-child(2) .inpatient-cost-media img{position:static;display:block;width:100%;max-width:100%;height:auto;transform:none}
+  .inpatient-cost-card .inpatient-check-list li{font-size:16px;line-height:1.4}
+  .inpatient-price-disclaimer{font-size:16px}
+  .inpatient-price-disclaimer img{width:48px;height:48px}
+  .inpatient-feature-banner{padding:20px}
+  .inpatient-feature-banner h2{font-size:22px}
+  .inpatient-feature-banner p{font-size:16px}
+}
+@media(max-width:768px){
+  .inpatient-care{background:radial-gradient(ellipse 85% 65% at 50% 100%,#ffadb5 0%,#f87080 52%,#f04b60 100%)}
+  .inpatient-rehab{background:radial-gradient(ellipse 85% 70% at 50% 100%,#c4d1eb 0%,#a2acc2 50%,#808899 100%)}
+  .inpatient-updates{background:radial-gradient(ellipse 85% 65% at 50% 100%,#ffadb5 0%,#f87080 52%,#f04b60 100%)}
+  .inpatient-final-cta{background:radial-gradient(ellipse 85% 70% at 50% 100%,#a6ceff 0%,#63a6ff 55%,#4696ff 100%)}
+  .inpatient-feature-banner{grid-template-columns:1fr;min-height:0}
+  .inpatient-feature-content{gap:24px}
+  .inpatient-feature-media{height:260px}
+  .inpatient-feature-media img{right:-20px;bottom:-20px;width:min(100%,420px);max-height:calc(100% + 20px)}
+  .inpatient-rehab{grid-template-columns:1fr;min-height:0}
+  .inpatient-rehab .inpatient-rehab-media{height:clamp(260px,54vw,380px)}
+  .inpatient-rehab .inpatient-feature-media img{right:50%;bottom:-24px;width:auto;height:calc(100% + 24px);max-width:100%;max-height:none;object-position:center bottom;transform:translateX(50%)}
+  .inpatient-cost-grid{grid-auto-rows:auto}
+  .inpatient-cost-card .inpatient-check-list{grid-template-columns:1fr}
+  .inpatient-cost-card .inpatient-check-list li{grid-column:auto!important;grid-row:auto!important}
+  .inpatient-cost-card:nth-child(2) .inpatient-check-list li:last-child{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:12px;row-gap:8px}
+  .inpatient-cost-card:nth-child(2) .inpatient-check-list li:last-child>.inpatient-tabler-check{grid-column:1;grid-row:1}
+  .inpatient-cost-card:nth-child(2) .inpatient-check-list li:last-child>span{grid-column:2;grid-row:1}
+  .inpatient-cost-card:nth-child(2) .inpatient-cost-info{grid-column:2;grid-row:2;display:inline-flex;align-items:center;gap:6px;width:max-content;height:auto;margin:0;padding:4px 0;border-radius:4px;color:var(--figma-semantic-accent-primary);font:inherit;font-size:14px;font-weight:700;line-height:1.3}
+  .inpatient-cost-info-label{display:inline}
+  .inpatient-final-cta{grid-template-columns:1fr;min-height:0}
+  .inpatient-final-cta .inpatient-feature-content{gap:24px}
+  .inpatient-final-cta .inpatient-feature-media{height:clamp(190px,48vw,360px);align-self:auto}
+  .inpatient-final-cta .inpatient-feature-media img{right:50%;bottom:-24px;width:auto;height:calc(100% + 24px);max-width:100%;max-height:none;transform:translateX(50%);object-position:center bottom}
+}
+@media(max-width:700px){
+  .inpatient-cost-media{--inpatient-cost-art-top:0px}
+}
+@media(max-width:480px){
+  .inpatient-page .therapy-illustration{display:flex;height:300px}
+  .inpatient-page .therapy-illustration img{width:min(82%,270px);height:270px}
+  .inpatient-benefits{grid-template-columns:1fr}
+  .inpatient-benefits article{display:grid;grid-template-columns:62px minmax(0,1fr);column-gap:16px;align-items:center}
+  .inpatient-benefit-art{grid-row:1/3;margin:0}
+  .inpatient-benefits h3{min-height:0}
+  .inpatient-benefits p{margin-top:6px}
+  .inpatient-reason-grid{grid-template-columns:1fr}
+  .inpatient-reason-grid li{min-height:0}
+  .inpatient-price-disclaimer{flex-direction:column;align-items:flex-start;gap:12px}
+  .inpatient-care h2{font-size:22px}
+  .inpatient-care .button{width:100%}
+  .inpatient-cost-cta,.inpatient-final-cta .button{width:100%}
+  .inpatient-care-media{width:100%;min-height:clamp(220px,58vw,280px)}
+  .inpatient-rehab{grid-template-columns:1fr}
+  .inpatient-updates .inpatient-feature-media{height:280px}
+  .inpatient-final-cta .inpatient-feature-media{height:clamp(260px,75vw,360px)}
+  .inpatient-category-media{height:280px;padding:16px}
+  .inpatient-category-badge{font-size:12px}
+}
+@media(max-width:360px){
+  .inpatient-page .therapy-illustration{height:260px}
+  .inpatient-page .therapy-illustration img{height:240px}
+  .inpatient-page .therapy-intro{padding:16px}
+  .inpatient-category-media{height:190px;padding:12px}
+  .inpatient-category-media::after{height:80px;bottom:-30px}
+  .inpatient-category-body{padding:0 16px 20px}
+  .inpatient-category h3{font-size:18px}
+  .inpatient-feature-banner h2{font-size:18px;line-height:1.3;overflow-wrap:anywhere}
+  .inpatient-cost-content{padding:16px}
+  .inpatient-cost-card h3{font-size:20px}
+  .inpatient-price-disclaimer{font-size:15px}
+  .inpatient-benefits article{display:block}
+  .inpatient-benefit-art{margin-bottom:16px}
+}
+
+/* Match the horizontal value cards on the home page at tablet size and below. */
+@media(max-width:768px){
+  .inpatient-benefits,.inpatient-reason-grid{display:flex;align-items:stretch;gap:16px;width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab}
+  .inpatient-benefits::-webkit-scrollbar,.inpatient-reason-grid::-webkit-scrollbar{display:none}
+  .inpatient-benefits.is-dragging,.inpatient-reason-grid.is-dragging{user-select:none;cursor:grabbing}
+  .inpatient-benefits:focus-visible,.inpatient-reason-grid:focus-visible{outline:2px solid var(--pink);outline-offset:4px}
+  .inpatient-benefits article,.inpatient-reason-grid li{display:flex;flex:0 0 clamp(230px,36vw,275px);flex-direction:column;align-items:flex-start;width:auto;min-width:0;height:auto;min-height:0;padding:16px;border-radius:24px}
+  .inpatient-benefit-art{flex:none;width:62px;height:62px;margin:0 0 16px}
+  .inpatient-benefits h3{align-self:stretch;min-height:0;font-size:var(--figma-responsive-font-sizes-title-size);line-height:1.4}
+  .inpatient-benefits p{font-size:16px;line-height:1.4;margin-top:12px}
+  .inpatient-reason-grid img{flex:none;width:62px;height:62px;margin:0 0 16px;object-fit:contain;-webkit-user-drag:none}
+  .inpatient-reason-grid li{font-size:var(--figma-responsive-font-sizes-title-size);line-height:1.4}
+}
+@media(max-width:600px){
+  .inpatient-benefits,.inpatient-reason-grid{gap:16px}
+  .inpatient-benefits article,.inpatient-reason-grid li{flex-basis:clamp(205px,calc(40vw + 74px),260px)}
+}

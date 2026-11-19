@@ -66,7 +66,7 @@
   const menuGroups = [
     { title: 'Клиника', links: [
       ['О компании', 'about.html'], ['Наши ценности', 'index.html#values'],
-      ['Отделения клиники', 'departments.html'], ['Терапия', 'therapy.html'],
+      ['Отделения клиники', 'departments.html'], ['Терапия', 'therapy.html'], ['Стационар', 'inpatient.html'],
       ['Наши специалисты', 'specialists.html']
     ] },
     { title: 'Услуги и запись', links: [
@@ -109,6 +109,7 @@
 
   const searchItems = [
     { title: 'Терапия', href: 'therapy.html', keywords: 'лечение прием врач', popular: true },
+    { title: 'Стационар', href: 'inpatient.html', keywords: 'круглосуточное наблюдение лечение уход питомцы' },
     { title: 'Цены на услуги', href: 'prices.html', keywords: 'стоимость прайс', popular: true },
     { title: 'Наши специалисты', href: 'specialists.html', keywords: 'врачи доктор кулешов', popular: true },
     { title: 'Статьи', href: 'articles.html', keywords: 'полезное материалы', popular: true },
