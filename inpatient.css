@@ -90,7 +90,7 @@ html.inpatient-drugs-open{overflow:hidden}
 .inpatient-rehab .inpatient-check-list li{gap:16px;color:#fff;font-size:18px;line-height:1.4}
 .inpatient-rehab .inpatient-check-list li::before{display:none}
 .inpatient-rehab .inpatient-check-list img{display:block;flex:none;width:24px;height:24px}
-.inpatient-rehab .inpatient-feature-media img{right:-24px;bottom:-24px;width:auto;height:calc(100% + 48px);max-height:none;object-position:right bottom}
+.inpatient-rehab .inpatient-feature-media img{right:50%;bottom:-24px;width:auto;height:calc(100% + 48px);max-width:100%;max-height:none;object-position:center bottom;transform:translateX(50%)}
 @media(min-width:1440px){.inpatient-rehab .inpatient-feature-media img{right:50%;bottom:-24px;width:auto;height:calc(100% + 6px);max-width:100%;max-height:none;object-position:center bottom;transform:translateX(50%)}}
 .inpatient-updates{min-height:413px;background:linear-gradient(105deg,#f04b60 0%,#f87080 60%,#ff94a0 100%)}
 .inpatient-updates .inpatient-feature-pattern{opacity:.2}
