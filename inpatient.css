@@ -2,7 +2,6 @@
 .inpatient-page .therapy-intro,.inpatient-page .therapy-illustration{height:510px;min-height:0}
 .inpatient-page .therapy-intro{gap:16px;padding:28px}
 .inpatient-page .therapy-intro h1{line-height:1.2;margin-bottom:8px}
-.inpatient-page .therapy-intro p{font-size:16px;line-height:1.45}
 .inpatient-page .therapy-illustration img{width:min(90%,510px);height:auto;max-height:90%;object-fit:contain}
 .inpatient-hero-actions{grid-column:1/-1;display:grid;gap:16px}
 .inpatient-hero-actions .button{width:100%;height:64px}
@@ -129,7 +128,6 @@ html.inpatient-drugs-open{overflow:hidden}
   .inpatient-benefits p{font-size:16px}
   .inpatient-page .therapy-intro,.inpatient-page .therapy-illustration{min-height:0}
   .inpatient-page .therapy-intro{padding:24px}
-  .inpatient-page .therapy-intro p{font-size:15px}
   .inpatient-reason-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media(max-width:1024px){
@@ -151,7 +149,6 @@ html.inpatient-drugs-open{overflow:hidden}
 }
 @media(max-width:600px){
   .inpatient-page .therapy-intro{padding:20px}
-  .inpatient-page .therapy-intro p{font-size:16px}
   .inpatient-page .therapy-illustration{height:320px}
   .inpatient-page .therapy-illustration img{width:290px;height:290px}
   .inpatient-hero-actions .button{height:58px;font-size:16px}
