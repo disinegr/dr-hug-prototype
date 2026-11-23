@@ -1,5 +1,5 @@
 .inpatient-page .inpatient-hero{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.inpatient-page .therapy-intro,.inpatient-page .therapy-illustration{height:auto;min-height:610px}
+.inpatient-page .therapy-intro,.inpatient-page .therapy-illustration{height:510px;min-height:0}
 .inpatient-page .therapy-intro{gap:16px;padding:28px}
 .inpatient-page .therapy-intro h1{line-height:1.2;margin-bottom:8px}
 .inpatient-page .therapy-intro p{font-size:16px;line-height:1.45}
@@ -142,7 +142,7 @@ html.inpatient-drugs-open{overflow:hidden}
 }
 @media(max-width:800px){
   .inpatient-page .therapy-hero{display:grid;grid-template-columns:1fr}
-  .inpatient-page .therapy-intro,.inpatient-page .therapy-illustration{min-height:0}
+  .inpatient-page .therapy-intro,.inpatient-page .therapy-illustration{height:auto;min-height:0}
   .inpatient-page .therapy-illustration{height:400px}
   .inpatient-page .therapy-illustration img{width:350px;height:350px;max-height:none}
   .inpatient-hero-actions{grid-column:1}
